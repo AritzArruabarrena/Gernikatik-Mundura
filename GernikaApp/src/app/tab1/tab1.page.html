@@ -6,12 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="background">
+    <img src="../../assets/images/DALL·E-2024-12-04-12.01.png" alt="Fondo" class="background-image" />
+    <div class="character-section">
+      <img src="../../assets/images/MariArgazkia-removebg-preview.png" alt="Personaje 1" class="character character-left" />
+      <img src="../../assets/images/PeruArgazkia-removebg-preview.png" alt="Personaje 2" class="character character-right" />
+    </div>
+    <div class="dialog">
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+    </div>
+    <ion-button expand="full" color="warning" class="next-button">
+      HURRENGOA
+    </ion-button>
+  </div>
 </ion-content>
