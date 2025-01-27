@@ -12,13 +12,17 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="background">
     <img src="../../assets/images/DALL·E-2024-12-04-12.01.png" alt="Fondo" class="background-image" />
+    
     <div class="character-section">
-      <img src="../../assets/images/MariArgazkia-removebg-preview.png" alt="Personaje 1" class="character character-left" />
+      <img src="../../assets/images/InvertidaMari.png" alt="Personaje 1" class="character character-left" />
       <img src="../../assets/images/PeruArgazkia-removebg-preview.png" alt="Personaje 2" class="character character-right" />
     </div>
+
     <div class="dialog">
+      <div class="dialog-arrow"></div>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
     </div>
+
     <ion-button expand="full" color="warning" class="next-button">
       HURRENGOA
     </ion-button>
@@ -62,9 +66,9 @@
 
   .dialog {
     position: absolute;
-    bottom: 20%;
-    left: 10%;
-    right: 10%;
+    bottom: 30%;
+    left: 15%;
+    right: 35%;
     background: white;
     border-radius: 15px;
     padding: 15px;
@@ -72,6 +76,17 @@
     text-align: center;
     font-size: 14px;
     color: #333;
+  }
+
+  .dialog-arrow {
+    position: absolute;
+    bottom: -10px;
+    left: 20%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
   }
 
   .next-button {
