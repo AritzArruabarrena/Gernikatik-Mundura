@@ -1,0 +1,93 @@
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  
+    .background-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .corner-icon {
+      position: absolute;
+      width: 50px; 
+      height: 50px;
+      z-index: 10; 
+  
+      &-left {
+        top: 10px;
+        left: 10px;
+      }
+  
+      &-right {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  
+    .character-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end; 
+      position: absolute;
+      bottom: 15%; 
+      width: 100%;
+      padding: 0 10px;
+  
+      .character {
+        width: 200px;
+        height: auto;
+      }
+  
+      .character-mari {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+  
+      .character-right {
+        align-self: flex-start;
+        margin-top: -400px;
+      }
+    }
+  
+    .dialog {
+      position: absolute;
+      bottom: 100%; 
+      left: 80%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 15px;
+      padding: 10px 15px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      width: 200px; 
+      max-width: 100%; 
+      word-wrap: break-word;
+  
+      .dialog-arrow {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid white;
+      }
+    }
+  
+    .next-button {
+      position: absolute;
+      bottom: 5%;
+      left: 10%;
+      right: 10%;
+      font-weight: bold;
+      --border-radius: 15px;
+    }
+  }
+  
