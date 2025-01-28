@@ -1,17 +1,154 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ejemplo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="background">
+    <img
+      src="../../assets/images/DALL·E-2024-12-04-12.01.png"
+      alt="Fondo"
+      class="background-image"
+    />
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <!-- Iconos en las esquinas -->
+    <img
+      src="../../assets/icon/arrow.png"
+      alt="Icono Izquierda"
+      class="corner-icon corner-icon-left"
+    />
+    <img
+      src="../../assets/icon/map.png"
+      alt="Icono Derecha"
+      class="corner-icon corner-icon-right"
+    />
+
+    <div class="character-section">
+      <div class="character-wrapper character-mari">
+        <img
+          src="../../assets/images/InvertidaMari.png"
+          alt="Personaje 1"
+          class="character"
+        />
+        <div class="dialog">
+          <div class="dialog-arrow"></div>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
+          </p>
+        </div>
+      </div>
+
+      <img
+        src="../../assets/images/InvertidoPeru.png"
+        alt="Personaje 2"
+        class="character character-right"
+      />
+    </div>
+
+    <ion-button expand="full" color="warning" class="next-button">
+      HURRENGOA
+    </ion-button>
+  </div>
+
+  <style>
+    .background {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .background-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .corner-icon {
+      position: absolute;
+      width: 50px; /* Tamaño ajustable */
+      height: 50px;
+      z-index: 10; /* Asegura que esté encima del fondo */
+    }
+
+    .corner-icon-left {
+      top: 10px;
+      left: 10px;
+    }
+
+    .corner-icon-right {
+      top: 10px;
+      right: 10px;
+    }
+
+    .character-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end; /* Asegura que los personajes se alineen en la parte baja */
+      position: absolute;
+      bottom: 15%; /* Baja los personajes */
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .character {
+      width: 200px; /* Ajustado para mejor proporción */
+      height: auto;
+    }
+
+    .character-mari {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .character-right {
+      align-self: flex-start;
+      margin-top: -400px;
+    }
+
+    .dialog {
+      position: absolute;
+      bottom: 100%; /* Eleva el cuadro de diálogo */
+      left: 80%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 15px;
+      padding: 10px 15px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      width: 200px; /* Tamaño fijo */
+      max-width: 100%; /* Evita que se salga de los márgenes */
+      word-wrap: break-word;
+    }
+
+    .dialog-arrow {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid white;
+    }
+
+    .next-button {
+      position: absolute;
+      bottom: 5%;
+      left: 10%;
+      right: 10%;
+      font-weight: bold;
+      --border-radius: 15px;
+    }
+  </style>
 </ion-content>
