@@ -34,13 +34,6 @@
           alt="Personaje 1"
           class="character"
         />
-        <div class="dialog">
-          <div class="dialog-arrow"></div>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </p>
-        </div>
       </div>
 
       <img
@@ -48,6 +41,14 @@
         alt="Personaje 2"
         class="character character-right"
       />
+      <div class="dialog">
+        <div class="dialog-arrow"></div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </p>
+      </div>
     </div>
 
     <ion-button expand="full" color="warning" class="next-button">
@@ -71,9 +72,9 @@
 
     .corner-icon {
       position: absolute;
-      width: 50px; /* Tamaño ajustable */
+      width: 50px;
       height: 50px;
-      z-index: 10; /* Asegura que esté encima del fondo */
+      z-index: 10;
     }
 
     .corner-icon-left {
@@ -89,15 +90,15 @@
     .character-section {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end; /* Asegura que los personajes se alineen en la parte baja */
+      align-items: flex-end;
       position: absolute;
-      bottom: 15%; /* Baja los personajes */
+      bottom: 15%;
       width: 100%;
       padding: 0 10px;
     }
 
     .character {
-      width: 200px; /* Ajustado para mejor proporción */
+      width: 200px;
       height: auto;
     }
 
@@ -115,8 +116,8 @@
 
     .dialog {
       position: absolute;
-      bottom: 100%; /* Eleva el cuadro de diálogo */
-      left: 80%;
+      top: -100%; 
+      left: 50%;
       transform: translateX(-50%);
       background: white;
       border-radius: 15px;
@@ -125,21 +126,19 @@
       text-align: center;
       font-size: 14px;
       color: #333;
-      width: 200px; /* Tamaño fijo */
-      max-width: 100%; /* Evita que se salga de los márgenes */
+      width: 300px;
+      max-width: 100%;
       word-wrap: break-word;
     }
 
     .dialog-arrow {
       position: absolute;
-      bottom: -10px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 0;
-      height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-top: 10px solid white;
+      border-bottom: 10px solid white;
     }
 
     .next-button {
