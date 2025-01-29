@@ -78,8 +78,12 @@
     right: 0;
     text-align: center;
   
-    .character-Mari, .character-Peru {
+    .character-Mari {
       width: 150px;
+      height: auto;
+    }
+    .character-Peru {
+      width: 200px;
       height: auto;
     }
   }
