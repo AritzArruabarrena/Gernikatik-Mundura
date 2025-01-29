@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 declare var google: any;
@@ -21,6 +21,7 @@ interface Marker {
   imports: [CommonModule, FormsModule, IonicModule]
 })
 export class MapaPage implements AfterViewInit {
+   
   map: any;
   markers: Marker[] = [
     { position: { lat: 43.31748, lng: -2.67833 }, title: 'Jai Alai Pilotalekua' },
@@ -31,8 +32,11 @@ export class MapaPage implements AfterViewInit {
   ];
   infoWindow: any;
 
-  constructor() {}
+  constructor(private location: Location) {}  // Inyección del servicio Location
 
+  goBack() {
+    this.location.back(); // Regresa a la página anterior
+  }
   ngAfterViewInit() {
     this.loadMap();
   }

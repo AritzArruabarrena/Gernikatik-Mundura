@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { MapaPage } from './mapa.page';
+import { RouterModule, Routes } from '@angular/router';
+import { MapaPage } from './mapa.page'; // Importa el componente standalone
 
 const routes: Routes = [
   {
     path: '',
-    component: MapaPage
+    component: MapaPage // Usar el componente directamente aquí
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class MapaPageRoutingModule {}

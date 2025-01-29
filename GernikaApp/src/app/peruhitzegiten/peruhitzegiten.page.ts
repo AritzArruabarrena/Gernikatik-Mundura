@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular'; 
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-peruhitzegiten',
@@ -11,8 +12,18 @@ import { Router } from '@angular/router';
   imports: [CommonModule, IonicModule] 
 })
 export class PeruhitzegitenPage {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}  // Combina los servicios en un único constructor
+
+  // Método para navegar a la siguiente página
+  goToNextPage() {
+    this.router.navigateByUrl('/tabs/peruhitzegiten');
+  }
+
+  // Método para regresar a la página anterior
   goBack() {
-    this.router.navigateByUrl('/tabs/marihitzegiten');
+    this.location.back(); // Regresa a la página anterior
+  }
+  goMap(){
+    this.router.navigateByUrl('/tabs/mapa');
   }
 }
