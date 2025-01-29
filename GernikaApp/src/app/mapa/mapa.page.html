@@ -1,35 +1,36 @@
-<ion-content [fullscreen]="true" class="ion-padding">
-  <div class="background">
-    <img src="../../assets/images/DALL·E-2024-12-04-12.01.png" alt="Fondo" class="background-image" />
-    <ion-router-link routerLink=""><!-- NO VA LA RUTA -->
-      <img
-        src="../../assets/icon/arrow.png"
-        alt="Icono Izquierda"
-        class="corner-icon corner-icon-left"
-      />
-    </ion-router-link>
-    <div class="content-center">
-      <!-- Texto curvado usando SVG en dos filas -->
-      <svg width="320" height="180">
-        <defs>
-          <!-- Primera curva para "GERNIKATIK" -->
-          <path id="curve1" d="M 10,60 Q 160,-10 310,60" fill="transparent" />
-          <!-- Segunda curva para "MUNDURA" -->
-          <path id="curve2" d="M 10,120 Q 160,50 310,120" fill="transparent" />
-        </defs>
-        <text class="styled-title">
-          <textPath href="#curve1" startOffset="50%" text-anchor="middle">GERNIKATIK</textPath>
-        </text>
-        <text class="styled-title">
-          <textPath href="#curve2" startOffset="50%" text-anchor="middle">MUNDURA</textPath>
-        </text>
-      </svg>
-    </div>
-
-    <!-- Sección de personajes -->
-    <div class="character-section">
-      <img src="../../assets/images/MariArgazkia-removebg-preview.png" alt="Mari" class="character-Mari" />
-      <img src="../../assets/images/PeruArgazkia-removebg-preview.png" alt="Peru" class="character-Peru" />
-    </div>
+<div class="background">
+  <img src="../../assets/images/DALL·E-2024-12-04-12.01.png" alt="Fondo" class="background-image" />
+  <ion-router-link routerLink="">
+    <img
+      src="../../assets/icon/arrow.png"
+      alt="Icono Izquierda"
+      class="corner-icon corner-icon-left"
+    />
+  </ion-router-link>
+  <div class="content-center">
+    <!-- Texto curvado usando SVG en dos filas -->
+    <svg width="320" height="180">
+      <defs>
+        <!-- Primera curva para "GERNIKATIK" -->
+        <path id="curve1" d="M 10,60 Q 160,-10 310,60" fill="transparent" />
+        <!-- Segunda curva para "MUNDURA" -->
+        <path id="curve2" d="M 10,120 Q 160,50 310,120" fill="transparent" />
+      </defs>
+      <text class="styled-title">
+        <textPath href="#curve1" startOffset="50%" text-anchor="middle">GERNIKATIK</textPath>
+      </text>
+      <text class="styled-title">
+        <textPath href="#curve2" startOffset="50%" text-anchor="middle">MUNDURA</textPath>
+      </text>
+    </svg>
   </div>
-</ion-content>
+
+  
+</div>
+
+<!-- Sección de personajes -->
+<div class="character-section">
+  <img src="../../assets/images/MariArgazkia-removebg-preview.png" alt="Mari" class="character-Mari" />
+  <img src="../../assets/images/PeruArgazkia-removebg-preview.png" alt="Peru" class="character-Peru" />
+</div>
+<div id="map"></div>

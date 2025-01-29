@@ -82,3 +82,23 @@
     }
   }
   
+
+  
+  #map {
+    width: 50vw; /* 50% del ancho de la pantalla */
+    height: 50vh; /* 50% de la altura de la pantalla (hace el mapa cuadrado) */
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+    display: block;
+    position: fixed; /* Fijar la posición para que esté en el centro de la pantalla */
+    top: 50%; /* Mueve el mapa a la mitad de la pantalla */
+    left: 50%; /* Mueve el mapa a la mitad de la pantalla */
+    transform: translate(-50%, -50%); /* Ajusta la posición para centrarlo correctamente */
+    z-index: 10;
+  }
+  
+  #map.show-map {
+    opacity: 1;
+  }
+  
+  
