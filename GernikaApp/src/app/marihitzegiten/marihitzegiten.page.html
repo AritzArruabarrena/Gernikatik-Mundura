@@ -1,3 +1,4 @@
+
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="background">
     <img
@@ -9,7 +10,7 @@
     <img
       src="../../assets/icon/arrow.png"
       alt="Icono Izquierda"
-      class="corner-icon corner-icon-left"
+      class="corner-icon corner-icon-left"(click)="goBack()"
     />
     <img
       src="../../assets/icon/map.png"
@@ -40,8 +41,10 @@
       />
     </div>
 
-    <button class="next-button" routerLink="/tabs/peruhitzegiten">
+    <button class="next-button" (click)="goToNextPage()">
       HURRENGOA
-    </button>    
+    </button>
+    
   </div>
+  
 </ion-content>
