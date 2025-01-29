@@ -18,7 +18,7 @@
   // Posicionamiento del contenido central
   .content-center {
     position: absolute;
-    top: 30%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -65,28 +65,11 @@
       left: 10px;
     }
   }
-  // Sección de personajes
-  .character-section {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    text-align: center;
-  
-    .character-Mari, .character-Peru {
-      width: 150px;
-      height: auto;
-    }
-  }
-  
 
   
   #map {
-    width: 50vw; /* 50% del ancho de la pantalla */
-    height: 50vh; /* 50% de la altura de la pantalla (hace el mapa cuadrado) */
+    width: 80vw; /* Ajusta el ancho al 80% del ancho de la pantalla */
+    height: 60vh; /* Ajusta la altura al 60% de la altura de la pantalla (modo rectangular) */
     opacity: 0;
     transition: opacity 150ms ease-in;
     display: block;
