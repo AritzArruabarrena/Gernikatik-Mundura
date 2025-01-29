@@ -1,4 +1,4 @@
-import { Component, AfterViewInit  } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ declare var google: any;
 
 interface Marker {
   position: {
-    lat: number,
+    lat: number;
     lng: number;
   };
   title: string;
@@ -18,9 +18,9 @@ interface Marker {
   templateUrl: './mapa.page.html',
   styleUrls: ['./mapa.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule] 
+  imports: [CommonModule, FormsModule, IonicModule]
 })
-export class MapaPage implements AfterViewInit{
+export class MapaPage implements AfterViewInit {
   map: any;
   markers: Marker[] = [
     { position: { lat: 43.31748, lng: -2.67833 }, title: 'Jai Alai Pilotalekua' },
@@ -29,6 +29,7 @@ export class MapaPage implements AfterViewInit{
     { position: { lat: 43.31393, lng: -2.67885 }, title: 'Urriko Azken Astelehena (Pasilekuan)' },
     { position: { lat: 43.31303, lng: -2.67537 }, title: 'Astra' },
   ];
+  infoWindow: any;
 
   constructor() {}
 
@@ -36,7 +37,6 @@ export class MapaPage implements AfterViewInit{
     this.loadMap();
   }
 
-  
   loadMap() {
     const mapEle: HTMLElement | null = document.getElementById('map'); // El valor puede ser null
 
@@ -48,6 +48,8 @@ export class MapaPage implements AfterViewInit{
         center: myLatLng,
         zoom: 15, // Zoom más cercano para ver mejor los puntos en Gernika
       });
+
+      this.infoWindow = new google.maps.InfoWindow(); // Crear una instancia de InfoWindow
 
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
         this.renderMarkers();
@@ -65,11 +67,16 @@ export class MapaPage implements AfterViewInit{
   }
 
   addMarker(marker: Marker) {
-    return new google.maps.Marker({
+    const googleMarker = new google.maps.Marker({
       position: marker.position,
       map: this.map,
       title: marker.title,
     });
-  }
 
+    // Mostrar el InfoWindow al hacer clic en el marcador
+    googleMarker.addListener('click', () => {
+      this.infoWindow.setContent(marker.title); // Establecer el contenido como el título
+      this.infoWindow.open(this.map, googleMarker); // Abrir el InfoWindow sobre el marcador
+    });
+  }
 }
