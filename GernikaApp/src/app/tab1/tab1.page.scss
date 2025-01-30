@@ -1,89 +1,141 @@
-// Configuración del fondo
 .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .background-image {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-  
-    .background-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    object-fit: cover;
   }
-  
-  // Posicionamiento del contenido central
-  .content-center {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  
-    svg {
-      .styled-title {
-        font-family: 'Arial', sans-serif;
-        font-size: 35px; // Tamaño más pequeño
-        font-weight: bold;
-        fill: orange;
-        stroke: white;
-        stroke-width: 1px;
-        letter-spacing: 2px;
-      }
-    }
-  }
-  
-  // Botón centrado
-  .center-button {
-    border: 2px solid white; // Borde blanco
-    background-color: #FF6F00; // Fondo naranja
-    color: white; // Texto blanco
-    border-radius: 15px; // Bordes redondeados
-    font-weight: bold;
-    font-size: 20px; // Tamaño de fuente más pequeño
-    padding: 6px 12px; // Espaciado interno
-    width: auto; // Ajusta el ancho automáticamente
-    min-width: 160px; // Tamaño mínimo
-    height: 50px; // Altura ajustada
-    cursor: pointer; // Cursor de mano al pasar
-    text-align: center; // Centrar texto
-    outline: none; // Elimina el borde al hacer clic
-    transition: 0.3s; // Transición suave
-  }
-  
-  // Icono en la esquina
-  .corner-icon {
-    position: absolute;
-    width: 50px; // Tamaño ajustable
-    height: 50px;
-    z-index: 10; // Asegura que esté encima del fondo
-  }
-  
-  .corner-icon-right {
-    top: 10px;
+}
+
+.corner-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+
+  &-right {
+    top: env(safe-area-inset-top, 15px);
     right: 10px;
   }
-  
-  // Sección de personajes
-  .character-section {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    text-align: center;
-  
-    .character-Mari {
-      width: 150px;
-      height: auto;
-    }
-    .character-Peru {
-      width: 200px;
-      height: auto;
+}
+
+.content-center {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 20px) + 15%); 
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+
+  svg {
+    width: 320px;
+    height: 180px;
+
+    .styled-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 35px;
+      font-weight: bold;
+      fill: orange;
+      stroke: white;
+      stroke-width: 1px;
+      letter-spacing: 2px;
     }
   }
+}
+
+.center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid white;
+  background-color: #FF6F00;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 20px 16px;
+  width: 80%;
+  max-width: 350px;
+  height: 60px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+  display: block;
+}
+
+.character-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  .character-Mari {
+    width: 140px;
+    height: auto;
+  }
+
+  .character-Peru {
+    width: 180px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .corner-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .content-center {
+    top: 15% !important; 
+  }
+
+  svg {
+    width: 320px !important; 
+    height: 180px !important; 
+  }
+
+  .styled-title {
+    font-size: 35px !important; 
+  }
+
+  .center-button {
+    font-size: 16px;
+    height: 45px;
+  }
+
+  .character-section {
+    bottom: 10%;
+    gap: 15px;
+
+    .character-Mari {
+      width: 120px;
+    }
+
+    .character-Peru {
+      width: 150px;
+    }
+  }
+}
+.corner-icon-right {
+  width: 50px !important; /* Tamaño fijo */
+  height: 50px !important;
+}
+@media (max-width: 768px) {
+  .center-button {
+    font-size: 20px;
+    width: 95%;
+    height: 90px;
+  }
+}

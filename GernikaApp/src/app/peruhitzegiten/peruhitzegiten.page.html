@@ -7,14 +7,16 @@
     />
 
     <img
-    src="../../assets/icon/arrow.png"
-    alt="Icono Izquierda"
-    class="corner-icon corner-icon-left"(click)="goBack()"
-  />
+      src="../../assets/icon/arrow.png"
+      alt="Icono Izquierda"
+      class="corner-icon corner-icon-left"
+      (click)="goBack()"
+    />
     <img
       src="../../assets/icon/map.png"
       alt="Icono Derecha"
-      class="corner-icon corner-icon-right" (click)="goMap()"
+      class="corner-icon corner-icon-right"
+      (click)="goMap()"
     />
 
     <div class="character-section">
@@ -31,18 +33,16 @@
         alt="Personaje 2"
         class="character character-right"
       />
+
       <div class="dialog">
         <div class="dialog-arrow"></div>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.
         </p>
       </div>
     </div>
 
-    <button class="next-button">
-      HURRENGOA
-    </button>
+    <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
   </div>
 </ion-content>
