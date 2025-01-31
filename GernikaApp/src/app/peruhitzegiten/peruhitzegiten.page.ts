@@ -16,7 +16,7 @@ export class PeruhitzegitenPage {
 
   // Método para navegar a la siguiente página
   goToNextPage() {
-    this.router.navigateByUrl('/tabs/peruhitzegiten');
+    this.router.navigateByUrl('/tabs/kartakaurkitu'); 
   }
 
   // Método para regresar a la página anterior

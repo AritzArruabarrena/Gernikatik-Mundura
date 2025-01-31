@@ -1,0 +1,19 @@
+<ion-content class="ion-padding">
+  <img
+      src="../../assets/icon/arrow.png"
+      alt="Icono Izquierda"
+      class="corner-icon corner-icon-left"
+      (click)="goBack()"
+    />
+  <div class="game-container">
+    <div class="card-grid">
+      <div *ngFor="let card of cards; let i = index" 
+           class="card" 
+           [class.revealed]="card.revealed"
+           [style.backgroundImage]="card.revealed ? 'url(' + card.img + ')' : 'url(../../assets/images/cartadetras.png)'"
+           (click)="revealCard(i)">
+      </div>
+    </div>
+  </div>
+  <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
+</ion-content>

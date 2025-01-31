@@ -19,9 +19,15 @@ const routes: Routes = [
     loadChildren: () => import('./peruhitzegiten/peruhitzegiten.module').then( m => m.PeruhitzegitenModule)
   },
   {
+    path: 'kartakaurkitu',
+    loadChildren: () => import('./kartakaurkitu/kartakaurkitu.module').then( m => m.KartakaurkituPageModule)
+  },
+  {
     path: 'galderak-erantzuten',
     loadChildren: () => import('./galderak-erantzuten/galderak-erantzuten.module').then( m => m.GalderakErantzutenPageModule)
   }
+
+
 
 ];
 
