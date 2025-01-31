@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kartakaurkitu',
@@ -22,8 +23,7 @@ export class KartakaurkituPage implements OnInit {
 
   cards: any[] = [];
   selectedCards: any[] = [];
-
-  constructor(private navCtrl: NavController, private location: Location) {}
+  constructor(private navCtrl: NavController, private location: Location, private router: Router) {}
 
   ngOnInit() {
     this.initializeCards();
@@ -63,7 +63,7 @@ export class KartakaurkituPage implements OnInit {
   }
 
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/next-level');
+    this.router.navigateByUrl('/tabs/hizkisopa');
   }
 
   goBack() {

@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../kartakaurkitu/kartakaurkitu.module').then(m => m.KartakaurkituPageModule)
       },
       {
+        path: 'hizkisopa',
+        loadChildren: () => import('../hizkisopa/hizkisopa.module').then(m => m.HizkisopaPageModule)
+      },
+      {
         path: 'galderak-erantzuten',
         loadChildren: () => import('../galderak-erantzuten/galderak-erantzuten.module').then(m => m.GalderakErantzutenPageModule)
       },
