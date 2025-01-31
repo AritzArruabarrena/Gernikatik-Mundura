@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../kartakaurkitu/kartakaurkitu.module').then(m => m.KartakaurkituPageModule)
       },
       {
+        path: 'hizkisopa',
+        loadChildren: () => import('../hizkisopa/hizkisopa.module').then(m => m.HizkisopaPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

@@ -1,0 +1,31 @@
+<ion-content class="ion-padding">
+  <img
+    src="../../assets/icon/arrow.png"
+    alt="Icono Izquierda"
+    class="corner-icon corner-icon-left"
+    (click)="goBack()"
+  />
+  <div class="game-container">
+    <h2>Hizki zopa</h2>
+    <p>{{ timer }}</p>
+    <div class="letter-grid">
+      <div
+        *ngFor="let letter of grid; let i = index"
+        class="letter"
+        [class.selected]="selectedLetters.includes(i)"
+        (mousedown)="startSelection(i, $event)"
+        (mousemove)="continueSelection(i, $event)"
+        (mouseup)="endSelection()"
+        (touchstart)="startSelection(i, $event)"
+        (touchmove)="continueSelection(i, $event)"
+        (touchend)="endSelection()"
+      >
+        {{ letter }}
+      </div>
+    </div>    
+  </div>
+  <div class="bottom-bar">
+    <p>{{ wordsLeft }} falta dira</p>
+    <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
+  </div>
+</ion-content>

@@ -25,8 +25,11 @@ const routes: Routes = [
   {
     path: 'galderak-erantzuten',
     loadChildren: () => import('./galderak-erantzuten/galderak-erantzuten.module').then( m => m.GalderakErantzutenPageModule)
+  },
+  {
+    path: 'hizkisopa',
+    loadChildren: () => import('./hizkisopa/hizkisopa.module').then( m => m.HizkisopaPageModule)
   }
-
 
 
 ];
