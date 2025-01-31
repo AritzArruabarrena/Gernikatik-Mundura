@@ -1,0 +1,62 @@
+ion-content {
+  --background: #a5d300;
+}
+
+.game-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 70px; 
+  position: relative; /* Asegura que los elementos internos se posicionen bien */
+}
+
+.corner-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+
+  &-left {
+    top: env(safe-area-inset-top, 15px);
+    left: 10px;
+  }
+}
+
+.texto-opciones {
+  display: flex;
+  flex-direction: column;  
+  align-items: center; 
+  margin-bottom: 15px; 
+}
+
+.opciones-container {
+  display: flex;
+  flex-direction: row;  
+  justify-content: center; 
+  gap: 15px; 
+  padding-bottom: 20px; 
+}
+
+/* Estilos del botón "Hurrengoa" */
+.next-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espaciado superior */
+}
+
+.next-button {
+  border: 2px solid white;
+  background-color: #ff6f00;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  width: 80%;
+  max-width: 200px;
+  height: 50px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}

@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>galderakErantzuten</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">galderakErantzuten</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img
+    src="../../assets/icon/arrow.png"
+    alt="Icono Izquierda"
+    class="corner-icon corner-icon-left"
+    (click)="goBack()"
+  />
+
+  <div class="game-container">
+    <h2>{{ preguntas[preguntaActual].pregunta }}</h2>
+
+    <!-- Contenedor para los textos de las opciones -->
+    <div class="texto-opciones">
+      <span *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index">
+        {{ letras[i] }}) {{ opcion.texto }}
+      </span>
+    </div>
+
+    <!-- Contenedor para los botones alineados en fila -->
+    <div class="opciones-container">
+      <ion-button *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index"
+        (click)="seleccionarRespuesta(opcion)"
+        [color]="respuestaSeleccionada === null ? 'primary' : (opcion.correcta ? 'success' : 'danger')">
+        {{ letras[i] }}
+      </ion-button>
+    </div>
+
+    <!-- Botón "Hurrengoa" dentro de game-container -->
+    <div class="next-button-container" *ngIf="hurrengoa">
+      <button class="next-button" (click)="Hurrengoa()">Hurrengoa</button>
+    </div>
+  </div>
 </ion-content>
