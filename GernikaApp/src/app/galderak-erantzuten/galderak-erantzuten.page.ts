@@ -12,11 +12,12 @@ export class GalderakErantzutenPage implements OnInit {
     {
       pregunta: 'Zein da Gernikako Arbolaren esanahia?',
       opciones: [
-        { texto: 'Errege bat izendatzeko lekua', correcta: false },
+        { texto: 'Errege bat izendatzeko lekua', correcta: false},
         { texto: 'Euskal Herriaren askatasunaren sinboloa', correcta: true },
         { texto: 'Gernikako futbol taldearen izena', correcta: false },
         { texto: 'Landare mota bat', correcta: false }
-      ]
+      ],
+      imagen: '../../assets/images/galderak-1.png'
     },
     {
       pregunta: 'Zer egiten zen Gernikako Arbolaren azpian?',
@@ -25,7 +26,8 @@ export class GalderakErantzutenPage implements OnInit {
         { texto: 'Euskal Herriko legeak eztabaidatu eta erabakitzen ziren', correcta: true },
         { texto: 'Animalien feriak egiten ziren', correcta: false },
         { texto: 'Futbol partidak jokatzen ziren', correcta: false }
-      ]
+      ],
+      imagen: '../../assets/images/galderak-2.png'
     },
     {
       pregunta: 'Zein da Gernikako Batzar Etxearen helburu nagusia?',
@@ -34,7 +36,8 @@ export class GalderakErantzutenPage implements OnInit {
         { texto: 'Euskal Herriko lurraldeen arteko bilerak egitea', correcta: true },
         { texto: 'Euskal abestiak entzuteko gunea izatea', correcta: false },
         { texto: 'Gernikako museo bat izatea', correcta: false }
-      ]
+      ],
+      imagen: '../../assets/images/galderak-3.png'
     },
     {
       pregunta: 'Zein urtetan eraiki zen Gernikako Batzar Etxea?',
@@ -43,7 +46,8 @@ export class GalderakErantzutenPage implements OnInit {
         { texto: '1833an', correcta: true },
         { texto: '1920an', correcta: false },
         { texto: '1600ean', correcta: false }
-      ]
+      ],
+      imagen: '../../assets/images/galderak-5.png'
     },
     {
       pregunta: 'Zein zuhaitz motakoa da Gernikako Arbola?',
@@ -52,7 +56,8 @@ export class GalderakErantzutenPage implements OnInit {
         { texto: 'Pinua', correcta: false },
         { texto: 'Pagoa', correcta: false },
         { texto: 'Lizarra', correcta: false }
-      ]
+      ],
+      imagen: '../../assets/images/galderak-6.png'
     }
   ];
 

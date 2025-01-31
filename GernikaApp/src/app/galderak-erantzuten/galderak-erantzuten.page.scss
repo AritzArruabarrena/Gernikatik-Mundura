@@ -2,13 +2,25 @@ ion-content {
   --background: #a5d300;
 }
 
+
+  .titulua {
+    display: flex;
+    justify-content: center; // Centra horizontalmente
+    align-items: center; // Asegura alineación vertical si es necesario
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+
 .game-container {
   background: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
   margin-top: 70px; 
-  position: relative; /* Asegura que los elementos internos se posicionen bien */
+  height: 700px;
 }
 
 .corner-icon {
@@ -16,11 +28,11 @@ ion-content {
   width: 50px;
   height: 50px;
   z-index: 10;
+}
 
-  &-left {
-    top: env(safe-area-inset-top, 15px);
-    left: 10px;
-  }
+.corner-icon-left {
+  top: env(safe-area-inset-top, 15px);
+  left: 10px;
 }
 
 .texto-opciones {
@@ -38,11 +50,10 @@ ion-content {
   padding-bottom: 20px; 
 }
 
-/* Estilos del botón "Hurrengoa" */
 .next-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Espaciado superior */
+  margin-top: 20px;
 }
 
 .next-button {
@@ -60,3 +71,40 @@ ion-content {
   outline: none;
   transition: 0.3s;
 }
+
+.character-container {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  position: relative;
+}
+
+.character {
+  width: 150px;
+}
+
+.dialog {
+  position: relative;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  max-width: 80%;
+  text-align: center;
+
+  .dialog-arrow {
+    position: absolute;
+    left: -10px; // Mueve la flecha a la izquierda
+    top: 50%; // Centra verticalmente
+    transform: translateY(-50%); // Ajusta la posición correctamente
+    
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid black; // Flecha apuntando hacia el diálogo
+  }
+}
+
+
