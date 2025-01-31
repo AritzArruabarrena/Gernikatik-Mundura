@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../kartakaurkitu/kartakaurkitu.module').then(m => m.KartakaurkituPageModule)
       },
       {
+        path: 'galderak-erantzuten',
+        loadChildren: () => import('../galderak-erantzuten/galderak-erantzuten.module').then(m => m.GalderakErantzutenPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
