@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 
@@ -9,17 +9,33 @@ import { Location } from '@angular/common';
   standalone: false,
 })
 export class KartakaurkituPage implements OnInit {
-  cards = [
-    { id: 1, img: '../../assets/images/cuadro.jpg', revealed: false },
-    { id: 2, img: '../../assets/images/pelota.jpg', revealed: false },
-    { id: 1, img: '../../assets/images/cuadro.jpg', revealed: false },
-    { id: 2, img: '../../assets/images/pelota.jpg', revealed: false },
+  allCards = [
+    { id: 1, img: '../../assets/images/esku-pilota.png' },
+    { id: 2, img: '../../assets/images/frontoia.png' },
+    { id: 3, img: '../../assets/images/frontoia2.png' },
+    { id: 4, img: '../../assets/images/irabazlea.png' },
+    { id: 5, img: '../../assets/images/kamiseta.png' },
+    { id: 6, img: '../../assets/images/Neska-jolasten.png' },
+    { id: 7, img: '../../assets/images/pelotak.png' },
+    { id: 8, img: '../../assets/images/zesta.png' }
   ];
+
+  cards: any[] = [];
   selectedCards: any[] = [];
+
   constructor(private navCtrl: NavController, private location: Location) {}
 
   ngOnInit() {
+    this.initializeCards();
     this.shuffleCards();
+  }
+
+  initializeCards() {
+    const shuffled = [...this.allCards].sort(() => Math.random() - 0.5);
+    const selectedPairs = shuffled.slice(0, 4);
+    this.cards = [...selectedPairs, ...selectedPairs] 
+      .map(card => ({ ...card, revealed: false })) 
+      .sort(() => Math.random() - 0.5); 
   }
 
   shuffleCards() {
@@ -49,7 +65,8 @@ export class KartakaurkituPage implements OnInit {
   goToNextPage() {
     this.navCtrl.navigateForward('/tabs/next-level');
   }
+
   goBack() {
-    this.location.back(); 
+    this.location.back();
   }
 }
