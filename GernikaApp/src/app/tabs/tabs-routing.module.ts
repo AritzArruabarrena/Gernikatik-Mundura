@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../mapa/mapa.module').then(m => m.MapaPageModule)
       },
       {
+        path: 'kartakaurkitu',
+        loadChildren: () => import('../kartakaurkitu/kartakaurkitu.module').then(m => m.KartakaurkituPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
@@ -34,7 +38,8 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/tab1',
     pathMatch: 'full'
-  }
+  },
+
 ];
 
 @NgModule({

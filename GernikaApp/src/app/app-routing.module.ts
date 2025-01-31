@@ -17,7 +17,12 @@ const routes: Routes = [
   {
     path: 'peruhitzegiten',
     loadChildren: () => import('./peruhitzegiten/peruhitzegiten.module').then( m => m.PeruhitzegitenModule)
-  }
+  },  {
+    path: 'kartakaurkitu',
+    loadChildren: () => import('./kartakaurkitu/kartakaurkitu.module').then( m => m.KartakaurkituPageModule)
+  },
+
+
 
 ];
 
