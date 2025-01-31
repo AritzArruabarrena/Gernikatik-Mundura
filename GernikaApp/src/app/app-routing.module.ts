@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'peruhitzegiten',
     loadChildren: () => import('./peruhitzegiten/peruhitzegiten.module').then( m => m.PeruhitzegitenModule)
+  },
+  {
+    path: 'galderak-erantzuten',
+    loadChildren: () => import('./galderak-erantzuten/galderak-erantzuten.module').then( m => m.GalderakErantzutenPageModule)
   }
 
 ];
