@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('../galderak-erantzuten/galderak-erantzuten.module').then(m => m.GalderakErantzutenPageModule)
       },
       {
+        path: 'marijesia-ordenatu',
+        loadChildren: () => import('../marijesia-ordenatu/marijesia-ordenatu.module').then(m => m.MarijesiaOrdenatuPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

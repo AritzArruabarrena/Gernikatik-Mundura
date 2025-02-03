@@ -29,7 +29,11 @@ const routes: Routes = [
   {
     path: 'hizkisopa',
     loadChildren: () => import('./hizkisopa/hizkisopa.module').then( m => m.HizkisopaPageModule)
+  },  {
+    path: 'marijesia-ordenatu',
+    loadChildren: () => import('./marijesia-ordenatu/marijesia-ordenatu.module').then( m => m.MarijesiaOrdenatuPageModule)
   }
+
 
 
 ];
