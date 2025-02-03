@@ -11,20 +11,17 @@
       src="../../assets/icon/Volume-up.png"
       alt="Subir volumen"
       class="corner-icon corner-icon-right"
+      (click)="playAudio()"
     />
 
     <div class="game-content">
-      <div class="text-box">
-        <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at risus non.</p>
-      </div>
-      <div class="text-box">
-        <p>2. Suspendisse potenti. Integer id libero nec justo scelerisque vestibulum in nec lacus.</p>
-      </div>
-      <div class="text-box">
-        <p>3. Quisque eget justo sit amet est faucibus ultrices. Vivamus non dolor auctor.</p>
+      <div cdkDropList (cdkDropListDropped)="drop($event)" class="text-container">
+        <div *ngFor="let sentence of sentences" cdkDrag class="text-box">
+          <p>{{ sentence }}</p>
+        </div>
       </div>
     </div>
-    
-    <button class="next-button">HURRENGOA</button>
+
+    <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
   </div>
 </ion-content>

@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { MarijesiaOrdenatuPageRoutingModule } from './marijesia-ordenatu-routing.module';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 import { MarijesiaOrdenatuPage } from './marijesia-ordenatu.page';
 
 @NgModule({
@@ -13,6 +15,7 @@ import { MarijesiaOrdenatuPage } from './marijesia-ordenatu.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    DragDropModule,
     MarijesiaOrdenatuPageRoutingModule
   ],
   declarations: [MarijesiaOrdenatuPage]
