@@ -16,7 +16,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   ];
 
   grid: string[] = [];
-  gridSize = 12;  // Asumimos grid de 12x12
+  gridSize = 12;  
   selectedLetters: number[] = [];
   confirmedLetters: Set<number> = new Set();
   foundWords: Set<string> = new Set();
@@ -95,7 +95,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  // Inicializa el gesture sobre el contenedor de la cuadrícula
   initializeGesture() {
     const gridElement = document.querySelector('.letter-grid');
     if (gridElement) {
@@ -111,7 +110,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     }
   }
 
-  // Convierte la posición (x, y) en el índice de la letra tocada, si existe
   private getLetterIndexFromPoint(x: number, y: number): number | null {
     const element = document.elementFromPoint(x, y) as HTMLElement;
     if (element && element.classList.contains('letter')) {
@@ -121,9 +119,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     return null;
   }
 
-  // Maneja el inicio del gesto: registra el índice inicial y activa la selección
   handleGestureStart(ev: any) {
-    // Evitamos comportamientos por defecto
     ev.event.preventDefault();
     const index = this.getLetterIndexFromPoint(ev.currentX, ev.currentY);
     if (index !== null) {
@@ -133,7 +129,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     }
   }
 
-  // Maneja el movimiento del gesto: actualiza la selección en base al índice actual
   handleGestureMove(ev: any) {
     if (!this.isMouseDown) return;
     ev.event.preventDefault();
@@ -143,12 +138,10 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     }
   }
 
-  // Maneja el final del gesto: valida y limpia la selección
   handleGestureEnd(ev: any) {
     this.endSelection();
   }
 
-  // Método para actualizar la selección basado en el índice actual
   continueSelection(index: number) {
     const startCoord = this.getCoordinates(this.startIndex);
     const currentCoord = this.getCoordinates(index);
@@ -166,7 +159,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
       stepX = dx > 0 ? 1 : -1;
       stepY = dy > 0 ? 1 : -1;
     } else {
-      // Si la dirección no es horizontal, vertical o diagonal, no actualizamos la selección.
       return;
     }
     
@@ -181,7 +173,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     this.selectedLetters = newSelection;
   }
 
-  // Método para finalizar la selección y validar la palabra
   endSelection() {
     this.isMouseDown = false;
     const selectedWord = this.selectedLetters.map(index => this.grid[index]).join('');
@@ -189,14 +180,11 @@ export class HizkisopaPage implements OnInit, OnDestroy {
       this.foundWords.add(selectedWord);
       this.wordsLeft = this.words.length - this.foundWords.size;
       this.selectedLetters.forEach(index => this.confirmedLetters.add(index));
-      // Aquí podrías agregar retroalimentación (vibración, animación, etc.)
     }
-    // Limpia la selección para la siguiente jugada
     this.selectedLetters = [];
     this.startIndex = -1;
   }
 
-  // Función auxiliar para convertir un índice en coordenadas (fila y columna)
   getCoordinates(index: number): { row: number, col: number } {
     return {
       row: Math.floor(index / this.gridSize),
@@ -205,7 +193,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   }
 
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/next-level');
+    this.navCtrl.navigateForward('/tabs/marijesia-ordenatu');
   }
 
   goBack() {
