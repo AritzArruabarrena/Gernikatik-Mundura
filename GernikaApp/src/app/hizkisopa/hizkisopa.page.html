@@ -1,4 +1,4 @@
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" style="touch-action: none">
   <img
     src="../../assets/icon/arrow.png"
     alt="Icono Izquierda"
@@ -12,17 +12,12 @@
       <div
         *ngFor="let letter of grid; let i = index"
         class="letter"
-        [class.selected]="selectedLetters.includes(i)"
-        (mousedown)="startSelection(i, $event)"
-        (mousemove)="continueSelection(i, $event)"
-        (mouseup)="endSelection()"
-        (touchstart)="startSelection(i, $event)"
-        (touchmove)="continueSelection(i, $event)"
-        (touchend)="endSelection()"
+        [attr.data-index]="i"
+        [class.selected]="selectedLetters.includes(i) || confirmedLetters.has(i)"
       >
         {{ letter }}
       </div>
-    </div>    
+    </div>
   </div>
   <div class="bottom-bar">
     <p>{{ wordsLeft }} falta dira</p>

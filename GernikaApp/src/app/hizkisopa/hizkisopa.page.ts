@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NavController, GestureController, Gesture } from '@ionic/angular';
 import { Location } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./hizkisopa.page.scss'],
   standalone: false
 })
-export class HizkisopaPage implements OnInit {
+export class HizkisopaPage implements OnInit, OnDestroy {
   words = [
     'PILOTA', 'TXAPELA', 'ZESTA-PUNTA', 'PILOTALEKUA',
     'JAI-ALAI', 'TXAPELKETA', 'ESKUPILOTA', 'PARTIDAK',
@@ -16,20 +16,34 @@ export class HizkisopaPage implements OnInit {
   ];
 
   grid: string[] = [];
-  gridSize = 12;
+  gridSize = 12;  // Asumimos grid de 12x12
   selectedLetters: number[] = [];
+  confirmedLetters: Set<number> = new Set();
   foundWords: Set<string> = new Set();
   timer: number = 500;
   wordsLeft: number = this.words.length;
   interval: any;
   isMouseDown: boolean = false;
-  confirmedLetters: Set<number> = new Set();
+  startIndex: number = -1;
 
-  constructor(private navCtrl: NavController, private location: Location) {}
+  gesture!: Gesture;
+
+  constructor(
+    private navCtrl: NavController,
+    private location: Location,
+    private gestureCtrl: GestureController
+  ) {}
 
   ngOnInit() {
     this.generateGrid();
     this.startTimer();
+    this.initializeGesture();
+  }
+
+  ngOnDestroy() {
+    if (this.gesture) {
+      this.gesture.destroy();
+    }
   }
 
   generateGrid() {
@@ -42,7 +56,7 @@ export class HizkisopaPage implements OnInit {
     this.words.forEach((word) => {
       let placed = false;
       let attempts = 0;
-      while (!placed && attempts < 200) { // Aumentamos intentos para mayor éxito
+      while (!placed && attempts < 200) {
         let direction = directions[Math.floor(Math.random() * directions.length)];
         let startX = Math.floor(Math.random() * this.gridSize);
         let startY = Math.floor(Math.random() * this.gridSize);
@@ -81,38 +95,114 @@ export class HizkisopaPage implements OnInit {
     }, 1000);
   }
 
-  startSelection(index: number, event: MouseEvent | TouchEvent) {
-    if (event instanceof TouchEvent) {
-      event.preventDefault(); // Prevenir el scroll en dispositivos móviles
+  // Inicializa el gesture sobre el contenedor de la cuadrícula
+  initializeGesture() {
+    const gridElement = document.querySelector('.letter-grid');
+    if (gridElement) {
+      this.gesture = this.gestureCtrl.create({
+        el: gridElement,
+        gestureName: 'sopa-letras',
+        threshold: 0,
+        onStart: (ev) => this.handleGestureStart(ev),
+        onMove: (ev) => this.handleGestureMove(ev),
+        onEnd: (ev) => this.handleGestureEnd(ev)
+      });
+      this.gesture.enable();
     }
-    this.isMouseDown = true;
-    this.selectedLetters = [index];
   }
 
-  continueSelection(index: number, event: MouseEvent | TouchEvent) {
+  // Convierte la posición (x, y) en el índice de la letra tocada, si existe
+  private getLetterIndexFromPoint(x: number, y: number): number | null {
+    const element = document.elementFromPoint(x, y) as HTMLElement;
+    if (element && element.classList.contains('letter')) {
+      const indexString = element.getAttribute('data-index');
+      return indexString !== null ? parseInt(indexString, 10) : null;
+    }
+    return null;
+  }
+
+  // Maneja el inicio del gesto: registra el índice inicial y activa la selección
+  handleGestureStart(ev: any) {
+    // Evitamos comportamientos por defecto
+    ev.event.preventDefault();
+    const index = this.getLetterIndexFromPoint(ev.currentX, ev.currentY);
+    if (index !== null) {
+      this.isMouseDown = true;
+      this.startIndex = index;
+      this.selectedLetters = [index];
+    }
+  }
+
+  // Maneja el movimiento del gesto: actualiza la selección en base al índice actual
+  handleGestureMove(ev: any) {
     if (!this.isMouseDown) return;
-
-    if (event instanceof TouchEvent) {
-      event.preventDefault(); // Prevenir el scroll en dispositivos móviles
-    }
-
-    if (!this.selectedLetters.includes(index)) {
-      this.selectedLetters.push(index);
+    ev.event.preventDefault();
+    const index = this.getLetterIndexFromPoint(ev.currentX, ev.currentY);
+    if (index !== null) {
+      this.continueSelection(index);
     }
   }
 
+  // Maneja el final del gesto: valida y limpia la selección
+  handleGestureEnd(ev: any) {
+    this.endSelection();
+  }
+
+  // Método para actualizar la selección basado en el índice actual
+  continueSelection(index: number) {
+    const startCoord = this.getCoordinates(this.startIndex);
+    const currentCoord = this.getCoordinates(index);
+    const dx = currentCoord.col - startCoord.col;
+    const dy = currentCoord.row - startCoord.row;
+    
+    let stepX = 0;
+    let stepY = 0;
+    
+    if (dx === 0 && dy !== 0) {
+      stepY = dy > 0 ? 1 : -1;
+    } else if (dy === 0 && dx !== 0) {
+      stepX = dx > 0 ? 1 : -1;
+    } else if (Math.abs(dx) === Math.abs(dy)) {
+      stepX = dx > 0 ? 1 : -1;
+      stepY = dy > 0 ? 1 : -1;
+    } else {
+      // Si la dirección no es horizontal, vertical o diagonal, no actualizamos la selección.
+      return;
+    }
+    
+    const steps = Math.max(Math.abs(dx), Math.abs(dy));
+    const newSelection: number[] = [];
+    for (let i = 0; i <= steps; i++) {
+      const row = startCoord.row + i * stepY;
+      const col = startCoord.col + i * stepX;
+      if (row < 0 || row >= this.gridSize || col < 0 || col >= this.gridSize) break;
+      newSelection.push(row * this.gridSize + col);
+    }
+    this.selectedLetters = newSelection;
+  }
+
+  // Método para finalizar la selección y validar la palabra
   endSelection() {
     this.isMouseDown = false;
-    const selectedWord = this.selectedLetters.map((index) => this.grid[index]).join('');
+    const selectedWord = this.selectedLetters.map(index => this.grid[index]).join('');
     if (this.words.includes(selectedWord) && !this.foundWords.has(selectedWord)) {
       this.foundWords.add(selectedWord);
       this.wordsLeft = this.words.length - this.foundWords.size;
-      this.selectedLetters.forEach((index) => this.confirmedLetters.add(index));
-    } else {
-      this.selectedLetters = [];
+      this.selectedLetters.forEach(index => this.confirmedLetters.add(index));
+      // Aquí podrías agregar retroalimentación (vibración, animación, etc.)
     }
+    // Limpia la selección para la siguiente jugada
+    this.selectedLetters = [];
+    this.startIndex = -1;
   }
-  
+
+  // Función auxiliar para convertir un índice en coordenadas (fila y columna)
+  getCoordinates(index: number): { row: number, col: number } {
+    return {
+      row: Math.floor(index / this.gridSize),
+      col: index % this.gridSize
+    };
+  }
 
   goToNextPage() {
     this.navCtrl.navigateForward('/tabs/next-level');
