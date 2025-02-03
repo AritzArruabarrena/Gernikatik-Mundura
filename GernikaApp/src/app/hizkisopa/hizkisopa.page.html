@@ -23,4 +23,14 @@
     <p>{{ wordsLeft }} falta dira</p>
     <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
   </div>
+  <div class="word-list">
+    <ul>
+      <li 
+        *ngFor="let word of words" 
+        (click)="toggleWord(word)" 
+        [class.found]="foundWords.has(word)">
+        {{ word }}
+      </li>
+    </ul>
+  </div>  
 </ion-content>

@@ -4,7 +4,7 @@ ion-content {
   align-items: center;
   justify-content: center;
   position: relative;
-  touch-action: none; 
+  touch-action: none;
 }
 
 .corner-icon {
@@ -28,9 +28,9 @@ ion-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 90%; 
-  width: 100%; 
-  box-sizing: border-box; 
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .grid-container {
@@ -75,23 +75,22 @@ ion-content {
   transform: translateX(-50%);
   outline: none;
   transition: 0.3s;
+  bottom: 5%; // Ajusta este valor para bajar el botón
 }
 .letter-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 2px; 
+  gap: 2px;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   font-size: 20px;
-  width: 100%; 
-  max-width: 300px; 
-  margin: 0 auto; 
+  width: 100%;
+  margin: 0 auto;
 }
 
 .letter {
-  width: 100%;
-  aspect-ratio: 1; 
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,11 +98,56 @@ ion-content {
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
-  user-select: none; 
+  user-select: none;
   touch-action: none;
+  font-weight: bold;
+  text-align: center;
 }
 
 .letter.selected {
   background-color: #ff6f00;
   color: white;
+}
+.bottom-bar p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+.word-list {
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; 
+  padding: 10px;
+  padding-bottom: 60px; 
+
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; 
+  }
+
+  li {
+    font-size: 16px; 
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 10px; 
+    cursor: pointer;
+    background-color: #fff; 
+    border-radius: 5px;
+    transition: color 0.3s, text-decoration 0.3s, background-color 0.3s;
+  }
+
+  li.found {
+    text-decoration: line-through;
+    color: #ff6f00;
+    background-color: #ffe0b2; 
+  }
 }

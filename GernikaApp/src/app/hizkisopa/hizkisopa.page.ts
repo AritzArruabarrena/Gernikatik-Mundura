@@ -199,4 +199,14 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   goBack() {
     this.location.back();
   }
+
+  // Función para manejar el clic en una palabra de la lista
+  toggleWord(word: string) {
+    if (this.foundWords.has(word)) {
+      this.foundWords.delete(word);
+    } else {
+      this.foundWords.add(word);
+    }
+    this.wordsLeft = this.words.length - this.foundWords.size;
+  }
 }
