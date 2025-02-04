@@ -44,19 +44,32 @@ export class MarijesiaOrdenatuPage implements OnInit {
     this.location.back();
   }
 
-  playAudio() {
+  async playAudio() {
     if (!this.audioLoaded) {
-      console.log("Esperando a que el audio se cargue...");
-      return;
+      console.log("Cargando audio en memoria...");
+      await this.loadAudio(); // Precarga antes de reproducir
     }
 
     if (this.audio.paused) {
-      this.audio.play();
+      this.audio.play().catch(error => console.log("Error reproduciendo audio:", error));
       this.isPlaying = true;
     } else {
       this.audio.pause();
       this.audio.currentTime = 0;
       this.isPlaying = false;
+    }
+  }
+
+  async loadAudio() {
+    try {
+      const response = await fetch('../../assets/audio/UrteBarriBarri.mp3');
+      const blob = await response.blob();
+      this.audio.src = URL.createObjectURL(blob);
+      this.audio.load();
+      this.audioLoaded = true;
+      console.log("Audio precargado correctamente.");
+    } catch (error) {
+      console.error("Error precargando el audio:", error);
     }
   }
 
