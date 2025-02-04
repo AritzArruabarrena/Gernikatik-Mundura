@@ -20,7 +20,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   selectedLetters: number[] = [];
   confirmedLetters: Set<number> = new Set();
   foundWords: Set<string> = new Set();
-  timer: number = 500;
+  timer: number = 300;
   wordsLeft: number = this.words.length;
   interval: any;
   isMouseDown: boolean = false;
@@ -200,7 +200,6 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  // Función para manejar el clic en una palabra de la lista
   toggleWord(word: string) {
     if (this.foundWords.has(word)) {
       this.foundWords.delete(word);
