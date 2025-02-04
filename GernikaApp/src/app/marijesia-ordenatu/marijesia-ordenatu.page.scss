@@ -21,6 +21,8 @@ ion-content {
     flex-direction: column;
     align-items: center;
     position: relative;
+    width: 100%;
+    max-width: 500px; // Limita el ancho en pantallas grandes
   }
 
   .corner-icon {
@@ -46,7 +48,7 @@ ion-content {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 70px; // Bajado un poco más
+    margin-top: 70px;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -76,5 +78,47 @@ ion-content {
     margin-top: 20px;
     cursor: pointer;
     text-transform: uppercase;
+  }
+
+  // Media queries para dispositivos medianos y pequeños
+  @media (max-width: 768px) {
+    .game-container {
+      margin: 40px 5px 0;
+      padding: 15px;
+    }
+
+    .corner-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .game-content {
+      padding: 15px;
+      margin-top: 50px;
+    }
+
+    .next-button {
+      padding: 8px 16px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .game-container {
+      margin: 20px 5px;
+      padding: 10px;
+    }
+
+    .game-content {
+      padding: 10px;
+      margin-top: 40px;
+    }
+
+    .next-button {
+      padding: 6px 12px;
+      font-size: 12px;
+      margin-top: 10px;
+    }
   }
 }
