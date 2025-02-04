@@ -11,6 +11,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class MarijesiaOrdenatuPage implements OnInit {
   private audio: HTMLAudioElement;
   isPlaying = false;
+  audioLoaded = false; // Nuevo flag para saber si el audio está listo
 
   sentences = [
     "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu.",
@@ -25,16 +26,31 @@ export class MarijesiaOrdenatuPage implements OnInit {
   ];
 
   constructor(private location: Location) {
-    this.audio = new Audio('../../assets/audio/UrteBarriBarri.m4a');
+    this.audio = new Audio('../../assets/audio/UrteBarriBarri.mp3');
+    this.audio.preload = 'auto';
+
+    // Evento que se ejecuta cuando el audio está completamente cargado
+    this.audio.addEventListener('canplaythrough', () => {
+      this.audioLoaded = true;
+      console.log("Audio listo para reproducirse");
+    });
   }
 
   ngOnInit() {}
 
   goBack() {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+    this.isPlaying = false;
     this.location.back();
   }
 
   playAudio() {
+    if (!this.audioLoaded) {
+      console.log("Esperando a que el audio se cargue...");
+      return;
+    }
+
     if (this.audio.paused) {
       this.audio.play();
       this.isPlaying = true;
