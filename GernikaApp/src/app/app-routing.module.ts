@@ -29,14 +29,19 @@ const routes: Routes = [
   {
     path: 'hizkisopa',
     loadChildren: () => import('./hizkisopa/hizkisopa.module').then( m => m.HizkisopaPageModule)
-  },  {
+  },
+  {
     path: 'marijesia-ordenatu',
     loadChildren: () => import('./marijesia-ordenatu/marijesia-ordenatu.module').then( m => m.MarijesiaOrdenatuPageModule)
   },
   {
     path: 'produktu-puzzle',
     loadChildren: () => import('./produktu-puzzle/produktu-puzzle.module').then( m => m.ProduktuPuzzlePageModule)
+  },  {
+    path: 'pertsonak-puzzle',
+    loadChildren: () => import('./pertsonak-puzzle/pertsonak-puzzle.module').then( m => m.PertsonakPuzzlePageModule)
   }
+
 
 
 

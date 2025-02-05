@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NavController} from '@ionic/angular';
 @Component({
-  selector: 'app-produktu-puzzle',
-  templateUrl: './produktu-puzzle.page.html',
-  styleUrls: ['./produktu-puzzle.page.scss'],
+  selector: 'app-pertsonak-puzzle',
+  templateUrl: './pertsonak-puzzle.page.html',
+  styleUrls: ['./pertsonak-puzzle.page.scss'],
   standalone: false
 })
-export class ProduktuPuzzlePage implements OnInit {
+export class PertsonakPuzzlePage implements OnInit {
 
   constructor(private navCtrl: NavController,private location: Location) { }
 
@@ -21,5 +21,4 @@ export class ProduktuPuzzlePage implements OnInit {
   goToNextPage() {
     this.navCtrl.navigateForward('/tabs/pertsonak-puzzle');
   }
-
 }

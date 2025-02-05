@@ -44,6 +44,10 @@ const routes: Routes = [
         loadChildren: () => import('../produktu-puzzle/produktu-puzzle.module').then(m => m.ProduktuPuzzlePageModule)
       },
       {
+        path: 'pertsonak-puzzle',
+        loadChildren: () => import('../pertsonak-puzzle/pertsonak-puzzle.module').then(m => m.PertsonakPuzzlePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
