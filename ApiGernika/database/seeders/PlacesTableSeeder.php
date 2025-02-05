@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Place;
@@ -39,3 +40,4 @@ class PlacesTableSeeder extends Seeder
         ]);
     }
 }
+
