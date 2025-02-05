@@ -16,7 +16,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   ];
 
   grid: string[] = [];
-  gridSize = 12;  
+  gridSize = 14;  
   selectedLetters: number[] = [];
   confirmedLetters: Set<number> = new Set();
   foundWords: Set<string> = new Set();
