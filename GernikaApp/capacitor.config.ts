@@ -1,4 +1,4 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
@@ -6,8 +6,8 @@ const config: CapacitorConfig = {
   webDir: 'www',
   plugins: {
     ScreenOrientation: {
-      allowOrientationChange: false,
-      orientation: 'portrait'
+      allowOrientationChange: false, // Evita que el usuario cambie la orientación
+      orientation: 'portrait' // Bloquea en modo retrato
     }
   }
 };
