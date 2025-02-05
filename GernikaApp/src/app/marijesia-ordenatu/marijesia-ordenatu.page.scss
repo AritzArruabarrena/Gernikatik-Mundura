@@ -1,8 +1,9 @@
 ion-content {
   --background: #a5d300;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;          // Centrado horizontal
+  justify-content: flex-start;  // Alineación vertical al inicio
+  padding-top: 20px;            // Espacio superior global (opcional)
   position: relative;
   touch-action: none;
 
@@ -16,7 +17,7 @@ ion-content {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin: 70px 10px 0;
+    margin: 120px auto 0; // Aumentamos el margen superior para bajarlo
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +84,7 @@ ion-content {
   // Media queries para dispositivos medianos y pequeños
   @media (max-width: 768px) {
     .game-container {
-      margin: 40px 5px 0;
+      margin: 80px auto 0; // Menor margen superior en pantallas medianas
       padding: 15px;
     }
 
@@ -106,7 +107,7 @@ ion-content {
 
   @media (max-width: 480px) {
     .game-container {
-      margin: 20px 5px;
+      margin: 60px auto 0; // Ajuste de margen superior en pantallas pequeñas
       padding: 10px;
     }
 
