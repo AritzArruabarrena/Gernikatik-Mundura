@@ -10,7 +10,10 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class Tab1Page {
   puntos = [
-    { nombre: "kartakaurkitu", lat: 43.17926486331581, lng: -2.4894252620570825 }
+    { nombre: "kartakaurkitu", lat: 43.31748, lng:  -2.67833 },
+    { nombre: "galderak-erantzuten", lat: 43.31326, lng: -2.67922 },
+    { nombre: "marijesia-ordenatu", lat: 43.31554, lng: -2.67881 },
+    { nombre: "pertsonak-puzzle", lat: 43.31393, lng: -2.67885 }
   ];
 
   juegoEnCurso: boolean = false;
