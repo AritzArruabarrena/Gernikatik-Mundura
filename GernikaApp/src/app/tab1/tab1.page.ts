@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/geolocation';
 
@@ -8,42 +8,37 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['tab1.page.scss'],
   standalone: false,
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page {
   puntos = [
-    { nombre: "kartakaurkitu", lat: 43.17926486331581, lng: -2.4894252620570825 },
-    //{ nombre: "galderak-erantzuten", lat: 43.31326, lng: -2.67922 },
-    //{ nombre: "marijesia-ordenatu", lat: 43.31554, lng: -2.67881 },
-    //{ nombre: "pertsonak-puzzle", lat: 43.31393, lng: -2.67885 }
+    { nombre: "kartakaurkitu", lat: 43.17926486331581, lng: -2.4894252620570825 }
   ];
 
-  juegoEnCurso: boolean = false; // Para evitar múltiples redirecciones
+  juegoEnCurso: boolean = false;
 
   constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.trackLocation();
-  }
 
   goMap() {
     this.router.navigateByUrl('/tabs/mapa');
   }
 
-  async trackLocation() {
+  async verificarUbicacion() {
     const permisos = await Geolocation.requestPermissions();
-    
+
     if (permisos.location !== 'granted') {
       alert("Se requieren permisos de ubicación para jugar.");
       return;
     }
 
-    Geolocation.watchPosition({}, (position) => {
-      if (position && position.coords) {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        console.log(`Ubicación actual: ${lat}, ${lng}`);
-        this.checkNearby(lat, lng);
-      }
-    });
+    const posicion = await Geolocation.getCurrentPosition();
+
+    if (posicion && posicion.coords) {
+      const lat = posicion.coords.latitude;
+      const lng = posicion.coords.longitude;
+      console.log(`Ubicación actual: ${lat}, ${lng}`);
+      this.checkNearby(lat, lng);
+    } else {
+      alert("No se pudo obtener la ubicación.");
+    }
   }
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -58,7 +53,7 @@ export class Tab1Page implements OnInit {
   }
 
   checkNearby(lat: number, lng: number) {
-    if (this.juegoEnCurso) return; // Evitar múltiples redirecciones
+    if (this.juegoEnCurso) return;
 
     const radio = 15;
     let cercaDeUnPunto = false;
@@ -74,16 +69,15 @@ export class Tab1Page implements OnInit {
     });
 
     if (!cercaDeUnPunto) {
-      console.log("No estás cerca de ningún punto de juego.");
+      alert("No estás cerca de ningún punto de juego.");
     }
   }
 
   iniciarJuego(nombre: string) {
-    if (this.juegoEnCurso) return; // Evitar múltiples redirecciones
+    if (this.juegoEnCurso) return;
 
     this.juegoEnCurso = true;
     alert(`Iniciando juego en: ${nombre}`);
     this.router.navigateByUrl(`/tabs/${nombre}`);
   }
 }
- 
