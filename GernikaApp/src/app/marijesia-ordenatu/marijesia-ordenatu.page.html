@@ -1,11 +1,10 @@
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding" style="touch-action: none">
   <img
     src="../../assets/icon/arrow.png"
     alt="Icono Izquierda"
     class="corner-icon corner-icon-left"
     (click)="goBack()"
   />
-
   <div class="game-container">
     <img
       src="../../assets/icon/Volume-up.png"
@@ -13,7 +12,6 @@
       class="corner-icon corner-icon-right"
       (click)="playAudio()"
     />
-
     <div class="game-content">
       <div cdkDropList (cdkDropListDropped)="drop($event)" class="text-container">
         <div *ngFor="let sentence of sentences" cdkDrag class="text-box">
@@ -21,7 +19,6 @@
         </div>
       </div>
     </div>
-
-    <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
   </div>
+    <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
 </ion-content>

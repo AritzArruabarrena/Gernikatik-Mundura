@@ -70,12 +70,11 @@ ion-content {
   height: 50px;
   cursor: pointer;
   position: absolute;
-  bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
   outline: none;
   transition: 0.3s;
-  bottom: 5%; 
+  bottom: 3%; 
 }
 .letter-grid {
   display: grid;
@@ -114,9 +113,9 @@ ion-content {
   font-size: 20px;
 }
 .word-list {
-  margin: 20px auto;
+  margin: 10px auto;
   text-align: center;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
 
   h3 {
