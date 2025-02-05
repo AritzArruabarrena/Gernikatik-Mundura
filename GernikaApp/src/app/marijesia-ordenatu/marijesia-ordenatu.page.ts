@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-marijesia-ordenatu',
@@ -25,7 +26,7 @@ export class MarijesiaOrdenatuPage implements OnInit {
     "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu."
   ];
 
-  constructor(private location: Location) {
+  constructor(private location: Location,private navCtrl: NavController,) {
     this.audio = new Audio('../../assets/audio/UrteBarriBarri.mp3');
     this.audio.preload = 'auto';
 
@@ -80,6 +81,7 @@ export class MarijesiaOrdenatuPage implements OnInit {
   checkOrder() {
     if (JSON.stringify(this.sentences) === JSON.stringify(this.correctOrder)) {
       alert("Correcto. Ordenaste bien las frases.");
+      this.navCtrl.navigateForward('/tabs/produktu-puzzle');
     } else {
       alert("Inténtalo de nuevo.");
     }
