@@ -32,6 +32,10 @@ const routes: Routes = [
   },  {
     path: 'marijesia-ordenatu',
     loadChildren: () => import('./marijesia-ordenatu/marijesia-ordenatu.module').then( m => m.MarijesiaOrdenatuPageModule)
+  },
+  {
+    path: 'produktu-puzzle',
+    loadChildren: () => import('./produktu-puzzle/produktu-puzzle.module').then( m => m.ProduktuPuzzlePageModule)
   }
 
 
