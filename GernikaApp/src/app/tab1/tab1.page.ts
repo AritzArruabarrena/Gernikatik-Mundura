@@ -22,15 +22,17 @@ export class Tab1Page {
   }
 
   async verificarUbicacion() {
+    // 1. Solicitar permisos de ubicación
     const permisos = await Geolocation.requestPermissions();
-
+  
     if (permisos.location !== 'granted') {
       alert("Se requieren permisos de ubicación para jugar.");
       return;
     }
-
+  
+    // 2. Obtener ubicación si los permisos están concedidos
     const posicion = await Geolocation.getCurrentPosition();
-
+  
     if (posicion && posicion.coords) {
       const lat = posicion.coords.latitude;
       const lng = posicion.coords.longitude;
@@ -40,6 +42,7 @@ export class Tab1Page {
       alert("No se pudo obtener la ubicación.");
     }
   }
+  
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
     const R = 6371; // Radio de la Tierra en km
