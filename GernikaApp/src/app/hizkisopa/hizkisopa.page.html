@@ -27,7 +27,6 @@
     <ul>
       <li 
         *ngFor="let word of words" 
-        (click)="toggleWord(word)" 
         [class.found]="foundWords.has(word)">
         {{ word }}
       </li>

@@ -1,29 +1,28 @@
 ion-content {
   --background: #a5d300;
   display: flex;
-  align-items: center;          // Centrado horizontal
-  justify-content: flex-start;  // Alineación vertical al inicio
-  padding-top: 20px;            // Espacio superior global (opcional)
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
   position: relative;
   touch-action: none;
-
-  // Variables de colores
+}
   $game-bg-color: white;
   $button-bg: #ff6600;
   $text-bg: rgb(172, 172, 172);
 
   .game-container {
-    background: $game-bg-color;
+    background: white;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin: 120px auto 0; // Aumentamos el margen superior para bajarlo
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     width: 100%;
-    max-width: 500px; // Limita el ancho en pantallas grandes
+    max-width: none;
+    box-sizing: border-box;
   }
 
   .corner-icon {
@@ -31,7 +30,6 @@ ion-content {
     width: 50px;
     height: 50px;
     z-index: 10;
-    cursor: pointer;
 
     &-left {
       top: env(safe-area-inset-top, 15px);
@@ -70,56 +68,21 @@ ion-content {
   }
 
   .next-button {
-    background: $button-bg;
+    border: 2px solid white;
+    background-color: #ff6f00;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 10px;
-    margin-top: 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 6px 12px;
+    width: 80%;
+    max-width: 200px;
+    height: 50px;
     cursor: pointer;
-    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    outline: none;
+    transition: 0.3s;
+    bottom: 3%; 
   }
-
-  // Media queries para dispositivos medianos y pequeños
-  @media (max-width: 768px) {
-    .game-container {
-      margin: 80px auto 0; // Menor margen superior en pantallas medianas
-      padding: 15px;
-    }
-
-    .corner-icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .game-content {
-      padding: 15px;
-      margin-top: 50px;
-    }
-
-    .next-button {
-      padding: 8px 16px;
-      font-size: 14px;
-      margin-top: 15px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .game-container {
-      margin: 60px auto 0; // Ajuste de margen superior en pantallas pequeñas
-      padding: 10px;
-    }
-
-    .game-content {
-      padding: 10px;
-      margin-top: 40px;
-    }
-
-    .next-button {
-      padding: 6px 12px;
-      font-size: 12px;
-      margin-top: 10px;
-    }
-  }
-}
