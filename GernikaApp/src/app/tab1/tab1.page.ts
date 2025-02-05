@@ -12,9 +12,11 @@ export class Tab1Page {
   puntos = [
     { nombre: "kartakaurkitu", lat: 43.31748, lng:  -2.67833 },
     { nombre: "galderak-erantzuten", lat: 43.31326, lng: -2.67922 },
-    { nombre: "marijesia-ordenatu", lat: 43.31554, lng: -2.67881 },
+    { nombre: "marijesia-ordenatu", lat:  43.17931066526389, lng: -2.4895229051103622 },
     { nombre: "pertsonak-puzzle", lat: 43.31393, lng: -2.67885 }
   ];
+
+
 
   juegoEnCurso: boolean = false;
 
@@ -25,7 +27,6 @@ export class Tab1Page {
   }
 
   async verificarUbicacion() {
-    // 1. Solicitar permisos de ubicación
     const permisos = await Geolocation.requestPermissions();
   
     if (permisos.location !== 'granted') {
@@ -33,7 +34,6 @@ export class Tab1Page {
       return;
     }
   
-    // 2. Obtener ubicación si los permisos están concedidos
     const posicion = await Geolocation.getCurrentPosition();
   
     if (posicion && posicion.coords) {
@@ -48,14 +48,14 @@ export class Tab1Page {
   
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; // Radio de la Tierra en km
+    const R = 6371; 
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
               Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
               Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c * 1000; // Convertir a metros
+    return R * c * 1000; 
   }
 
   checkNearby(lat: number, lng: number) {
