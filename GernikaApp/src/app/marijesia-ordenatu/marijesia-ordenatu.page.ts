@@ -11,7 +11,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class MarijesiaOrdenatuPage implements OnInit {
   private audio: HTMLAudioElement;
   isPlaying = false;
-  audioLoaded = false; // Flag para saber si el audio está cargado
+  audioLoaded = false; 
 
   sentences = [
     "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu.",
@@ -26,7 +26,13 @@ export class MarijesiaOrdenatuPage implements OnInit {
   ];
 
   constructor(private location: Location) {
-    this.audio = new Audio();
+    this.audio = new Audio('../../assets/audio/UrteBarriBarri.mp3');
+    this.audio.preload = 'auto';
+
+    this.audio.addEventListener('canplaythrough', () => {
+      this.audioLoaded = true;
+      console.log("Audio listo para reproducirse");
+    });
   }
 
   ngOnInit() {}

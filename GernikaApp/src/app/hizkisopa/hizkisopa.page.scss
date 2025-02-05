@@ -128,9 +128,9 @@ ion-content {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap; /* Permite que las palabras se distribuyan en varias líneas */
+    flex-wrap: wrap; 
     justify-content: center;
-    gap: 10px;  /* Espacio entre palabras */
+    gap: 10px;
   }
 
   li {
