@@ -52,6 +52,10 @@ const routes: Routes = [
         loadChildren: () => import('../ontziak-hondaratzen/ontziak-hondaratzen.module').then(m => m.OntziakHondaratzenPageModule)
       },
       {
+        path: 'marijesiak-hutsuneak-bete',
+        loadChildren: () => import('../marijesiak-hutsuneak-bete/marijesiak-hutsuneak-bete.module').then(m => m.MarijesiakHutsuneakBetePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
