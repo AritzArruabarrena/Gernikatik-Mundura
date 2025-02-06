@@ -10,13 +10,15 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class Tab1Page {
   puntos = [
-    { nombre: "kartakaurkitu", lat: 43.31748, lng:  -2.67833 },
-    { nombre: "galderak-erantzuten", lat: 43.31326, lng: -2.67922 },
-    { nombre: "marijesia-ordenatu", lat:  43.17931066526389, lng: -2.4895229051103622 },
-    { nombre: "pertsonak-puzzle", lat: 43.31393, lng: -2.67885 }
+    { nombre: 'kartakaurkitu', lat: 43.31748, lng: -2.67833 },
+    { nombre: 'galderak-erantzuten', lat: 43.31393, lng: -2.67885 },
+    { nombre: 'marijesia-ordenatu', lat: 43.31554, lng: -2.67881 },
+    {
+      nombre: 'pertsonak-puzzle',
+      lat: 43.17924394578227,
+      lng: -2.4894351375284214,
+    },
   ];
-
-
 
   juegoEnCurso: boolean = false;
 
@@ -28,34 +30,36 @@ export class Tab1Page {
 
   async verificarUbicacion() {
     const permisos = await Geolocation.requestPermissions();
-  
+
     if (permisos.location !== 'granted') {
-      alert("Se requieren permisos de ubicación para jugar.");
+      alert('Se requieren permisos de ubicación para jugar.');
       return;
     }
-  
+
     const posicion = await Geolocation.getCurrentPosition();
-  
+
     if (posicion && posicion.coords) {
       const lat = posicion.coords.latitude;
       const lng = posicion.coords.longitude;
       console.log(`Ubicación actual: ${lat}, ${lng}`);
       this.checkNearby(lat, lng);
     } else {
-      alert("No se pudo obtener la ubicación.");
+      alert('No se pudo obtener la ubicación.');
     }
   }
-  
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; 
+    const R = 6371;
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) *
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c * 1000; 
+    return R * c * 1000;
   }
 
   checkNearby(lat: number, lng: number) {
@@ -64,7 +68,7 @@ export class Tab1Page {
     const radio = 15;
     let cercaDeUnPunto = false;
 
-    this.puntos.forEach(punto => {
+    this.puntos.forEach((punto) => {
       const distancia = this.getDistance(lat, lng, punto.lat, punto.lng);
 
       if (distancia < radio) {
@@ -75,7 +79,7 @@ export class Tab1Page {
     });
 
     if (!cercaDeUnPunto) {
-      alert("No estás cerca de ningún punto de juego.");
+      alert('No estás cerca de ningún punto de juego.');
     }
   }
 
