@@ -13,12 +13,16 @@
       (click)="playAudio()"
     />
     <div class="game-content">
-      <div cdkDropList (cdkDropListDropped)="drop($event)" class="text-container">
+      <div
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        class="text-container"
+      >
         <div *ngFor="let sentence of sentences" cdkDrag class="text-box">
           <p>{{ sentence }}</p>
         </div>
       </div>
     </div>
   </div>
-    <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
+  <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
 </ion-content>
