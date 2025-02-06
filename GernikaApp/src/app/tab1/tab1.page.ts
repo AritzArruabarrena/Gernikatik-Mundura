@@ -10,14 +10,15 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class Tab1Page {
   puntos = [
+    {
+      nombre: 'marihitzegiten',
+      lat: 43.17927377372057,
+      lng: -2.4895303693663533,
+    },
+    { nombre: 'pertsonak-puzzle', lat: 43.31748, lng: -2.67833 },
     { nombre: 'kartakaurkitu', lat: 43.31748, lng: -2.67833 },
     { nombre: 'galderak-erantzuten', lat: 43.31393, lng: -2.67885 },
     { nombre: 'marijesia-ordenatu', lat: 43.31554, lng: -2.67881 },
-    {
-      nombre: 'pertsonak-puzzle',
-      lat: 43.17924394578227,
-      lng: -2.4894351375284214,
-    },
   ];
 
   juegoEnCurso: boolean = false;
@@ -65,7 +66,7 @@ export class Tab1Page {
   checkNearby(lat: number, lng: number) {
     if (this.juegoEnCurso) return;
 
-    const radio = 15;
+    const radio = 20;
     let cercaDeUnPunto = false;
 
     this.puntos.forEach((punto) => {

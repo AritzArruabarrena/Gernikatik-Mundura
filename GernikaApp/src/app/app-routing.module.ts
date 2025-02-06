@@ -37,9 +37,14 @@ const routes: Routes = [
   {
     path: 'produktu-puzzle',
     loadChildren: () => import('./produktu-puzzle/produktu-puzzle.module').then( m => m.ProduktuPuzzlePageModule)
-  },  {
+  },
+  {
     path: 'pertsonak-puzzle',
     loadChildren: () => import('./pertsonak-puzzle/pertsonak-puzzle.module').then( m => m.PertsonakPuzzlePageModule)
+  },
+  {
+    path: 'ontziak-hondaratzen',
+    loadChildren: () => import('./ontziak-hondaratzen/ontziak-hondaratzen.module').then( m => m.OntziakHondaratzenPageModule)
   }
 
 

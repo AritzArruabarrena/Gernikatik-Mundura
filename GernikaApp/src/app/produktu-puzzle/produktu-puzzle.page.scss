@@ -2,12 +2,11 @@ ion-content {
     --background: #a5d300;
     display: flex;
     align-items: center;
-    justify-content: center; // Centra el contenido horizontalmente
+    justify-content: center; 
     padding-top: 20px;
     position: relative;
     touch-action: none;
   
-    // Variables de colores
     $game-bg-color: white;
     $button-bg: #ff6600;
     $text-bg: rgb(172, 172, 172);
@@ -23,8 +22,8 @@ ion-content {
       justify-content: center;
       position: relative;
       width: 100%;
-      max-width: 800px; // Limita el ancho en pantallas grandes
-      height: 600px; // Mantiene el tamaño adecuado del iframe
+      max-width: 800px; 
+      height: 600px; 
     }
   
     iframe {
@@ -62,11 +61,6 @@ ion-content {
         padding-top: 50px;
         width: 85%;
         height: 85%;
-      }
-  
-      .corner-icon {
-        width: 40px;
-        height: 40px;
       }
     }
   

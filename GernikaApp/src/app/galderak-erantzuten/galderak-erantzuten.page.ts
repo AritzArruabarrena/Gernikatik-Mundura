@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-galderak-erantzuten',
@@ -65,8 +66,7 @@ export class GalderakErantzutenPage implements OnInit {
   respuestaSeleccionada: boolean | null = null;
   letras = ['A', 'B', 'C', 'D']; // Mantiene las letras en orden
   hurrengoa = false; // Controla si el juego ha finalizado
-
-  constructor(private location: Location) {}
+  constructor(private location: Location, private navCtrl: NavController) {}
 
   ngOnInit() {
     this.mezclarOpciones();
@@ -84,27 +84,25 @@ export class GalderakErantzutenPage implements OnInit {
       this.preguntaActual++;
       this.respuestaSeleccionada = null;
     } else {
-      this.hurrengoa = true; // Muestra el botón de finalizar
+      this.hurrengoa = true; 
     }
   }
 
   Hurrengoa() {
     alert('Zorionak! Jokua bukatu da!');
-    this.location.back(); // Regresa a la pantalla anterior
+    this.navCtrl.navigateForward('/tabs/ontziak-hondaratzen');
   }
 
   goBack() {
     this.location.back();
   }
 
-  // Función para mezclar aleatoriamente las opciones
   mezclarOpciones() {
     this.preguntas.forEach(pregunta => {
       pregunta.opciones = this.shuffleArray(pregunta.opciones);
     });
   }
 
-  // Algoritmo de Fisher-Yates para mezclar un array
   shuffleArray(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

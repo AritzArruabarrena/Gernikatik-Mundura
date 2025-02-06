@@ -19,6 +19,6 @@ export class PertsonakPuzzlePage implements OnInit {
   }
 
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/pertsonak-puzzle');
+    this.navCtrl.navigateForward('/tabs/galderak-erantzuten');
   }
 }

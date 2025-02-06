@@ -48,6 +48,10 @@ const routes: Routes = [
         loadChildren: () => import('../pertsonak-puzzle/pertsonak-puzzle.module').then(m => m.PertsonakPuzzlePageModule)
       },
       {
+        path: 'ontziak-hondaratzen',
+        loadChildren: () => import('../ontziak-hondaratzen/ontziak-hondaratzen.module').then(m => m.OntziakHondaratzenPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
