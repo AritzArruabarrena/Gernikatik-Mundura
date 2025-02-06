@@ -48,6 +48,10 @@ const routes: Routes = [
         loadChildren: () => import('../pertsonak-puzzle/pertsonak-puzzle.module').then(m => m.PertsonakPuzzlePageModule)
       },
       {
+        path: 'marijesiak-hutsuneak-bete',
+        loadChildren: () => import('../marijesiak-hutsuneak-bete/marijesiak-hutsuneak-bete.module').then(m => m.MarijesiakHutsuneakBetePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
