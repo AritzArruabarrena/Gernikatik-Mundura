@@ -51,7 +51,8 @@ export class MarijesiakHutsuneakBetePage implements OnInit {
     this.errorRespuesta3 = (r3 !== this.correctas.respuesta3);
 
     if (!this.errorRespuesta1 && !this.errorRespuesta2 && !this.errorRespuesta3) {
-      alert('¡Correcto!');
+      alert('Zorionak ondo egin duzu!');
+      this.goToNextPage();
     } else {
       alert('Algunas respuestas son incorrectas. ¡Inténtalo de nuevo!');
     }

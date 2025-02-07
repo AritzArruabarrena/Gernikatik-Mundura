@@ -63,7 +63,8 @@ verificarRespuestas() {
   this.errorRespuesta5 = (r5 !== this.correctas.respuesta5);
 
   if (!this.errorRespuesta1 && !this.errorRespuesta2 && !this.errorRespuesta3 && !this.errorRespuesta4 && !this.errorRespuesta5) {
-    alert('¡Correcto!');
+    alert('Zorionak ondo egin duzu!');
+    this.goToNextPage();
   } else {
     alert('Algunas respuestas son incorrectas. ¡Inténtalo de nuevo!');
   }

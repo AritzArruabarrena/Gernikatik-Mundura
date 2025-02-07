@@ -26,7 +26,7 @@ correctas = {
   respuesta1: 'kanpaie',
   respuesta2: 'hemen',
   respuesta3: 'hiru',
-  respuesta4: 'Martina'
+  respuesta4: 'martina'
 };
 
 // Propiedades adicionales para la funcionalidad de la letra-grid y lista de palabras
@@ -57,7 +57,8 @@ verificarRespuestas() {
   this.errorRespuesta4 = (r4 !== this.correctas.respuesta4);
 
   if (!this.errorRespuesta1 && !this.errorRespuesta2 && !this.errorRespuesta3 && !this.errorRespuesta4) {
-    alert('¡Correcto!');
+    alert('Zorionak ondo egin duzu!');
+    this.goToNextPage();
   } else {
     alert('Algunas respuestas son incorrectas. ¡Inténtalo de nuevo!');
   }
