@@ -20,6 +20,42 @@ ion-content {
     max-width: none;
     box-sizing: border-box;
   }
+
+  .image-container {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .image-peru {
+    width: 200px;
+    height: auto;
+    display: block;
+    transform: translateX(-20px);
+  }
+  
+  .info-box {
+    background: white;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 10px;
+    position: relative;
+    margin-left: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Flecha invertida apuntando a la imagen */
+  .info-box::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px; // Mueve la flecha al lado derecho
+    transform: translateY(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+  }
   
   .corner-icon {
     position: absolute;
