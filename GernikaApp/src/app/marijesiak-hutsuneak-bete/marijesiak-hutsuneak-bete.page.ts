@@ -28,7 +28,6 @@ export class MarijesiakHutsuneakBetePage implements OnInit {
 
   // Propiedades adicionales para la funcionalidad de la letra-grid y lista de palabras
   wordsLeft: number = 3; // Valor de ejemplo, ajústalo según tu lógica
-  words: string[] = ['Hizki', 'Zopa', 'Adibidea']; // Lista de ejemplo
   foundWords: Set<string> = new Set(); // Conjunto de palabras ya encontradas
 
   // Propiedad para almacenar la instancia del audio
@@ -85,7 +84,7 @@ export class MarijesiakHutsuneakBetePage implements OnInit {
       this.audio.pause();
       this.audio.currentTime = 0;
     }
-    this.navCtrl.navigateForward('/next-page');
+    this.navCtrl.navigateForward('/tabs/marijesiak-hutsuneak-bete-1');
   }
 
   /**

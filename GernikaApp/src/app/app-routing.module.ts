@@ -49,7 +49,19 @@ const routes: Routes = [
   {
     path: 'marijesiak-hutsuneak-bete',
     loadChildren: () => import('./marijesiak-hutsuneak-bete/marijesiak-hutsuneak-bete.module').then( m => m.MarijesiakHutsuneakBetePageModule)
+  },  {
+    path: 'marijesiak-hutsuneak-bete-1',
+    loadChildren: () => import('./marijesiak-hutsuneak-bete-1/marijesiak-hutsuneak-bete-1.module').then( m => m.MarijesiakHutsuneakBete1PageModule)
   },
+  {
+    path: 'marijesiak-hutsuneak-bete-2',
+    loadChildren: () => import('./marijesiak-hutsuneak-bete-2/marijesiak-hutsuneak-bete-2.module').then( m => m.MarijesiakHutsuneakBete2PageModule)
+  },
+  {
+    path: 'marijesiak-hutsuneak-bete-3',
+    loadChildren: () => import('./marijesiak-hutsuneak-bete-3/marijesiak-hutsuneak-bete-3.module').then( m => m.MarijesiakHutsuneakBete3PageModule)
+  },
+
 
 ];
 
