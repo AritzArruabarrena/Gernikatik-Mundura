@@ -1,3 +1,51 @@
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding">
+    <!-- Contenedor con el estilo game-container -->
+    <div class="game-container">
+      <p>
+        <ion-input
+          [(ngModel)]="respuesta1"
+          placeholder="hitza"
+          class="input-inline"
+          clearInput="true">
+        </ion-input>
+        datoz<br>
+        Jesus adoratzen.<br>
+        Gu bere hemen gatoz<br>
+        limosnea batzen.<br><br>
+  
+        Apalazio zalduna<br>
+        Hiru Erregeen
+        <ion-input
+          [(ngModel)]="respuesta2"
+          placeholder="hitza"
+          class="input-inline"
+          clearInput="true">
+        </ion-input>,
+        <br>
+        zotzak eta paluak<br>
+        estudianteen kontuak.<br><br>
+  
+        Estudianteak sasirik sasi<br>
+        asko
+        <ion-input
+          [(ngModel)]="respuesta3"
+          placeholder="hitza"
+          class="input-inline"
+          clearInput="true">
+        </ion-input>
+        eta gitxi ikasi,<br>
+        txoritxua kaiolara<br>
+        estudiantea eskolara.
+      </p>
+    </div>
+  
+    <!-- Botón para verificar las respuestas -->
 
-</ion-content>
+    <button class="next-button" (click)="verificarRespuestas()">HURRENGOA</button>
+  
+    <!-- Botón para reproducir el audio -->
+    <!-- <ion-button expand="full" color="secondary" (click)="playAudio()">
+      Reproducir audio
+    </ion-button> -->
+  </ion-content>
+  

@@ -181,7 +181,7 @@ export class OntziakHondaratzenPage implements OnInit {
   }
 
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/ontziak-hondaratzen');
+    this.navCtrl.navigateForward('/tabs/marijesiak-hutsuneak-bete');
   }
 
   goBack() {
