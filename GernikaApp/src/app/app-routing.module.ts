@@ -51,9 +51,6 @@ const routes: Routes = [
     loadChildren: () => import('./marijesiak-hutsuneak-bete/marijesiak-hutsuneak-bete.module').then( m => m.MarijesiakHutsuneakBetePageModule)
   },
 
-
-
-
 ];
 
 @NgModule({
