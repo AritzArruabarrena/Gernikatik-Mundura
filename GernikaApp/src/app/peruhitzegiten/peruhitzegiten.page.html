@@ -45,4 +45,8 @@
 
     <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
   </div>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Win Image" class="win-image">
+  </div>
 </ion-content>

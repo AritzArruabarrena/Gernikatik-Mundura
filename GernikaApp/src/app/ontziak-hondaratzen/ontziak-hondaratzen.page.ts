@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { GameService } from 'src/app/services/game.service';
 
 export interface Cell {
   row: number;
@@ -13,25 +14,46 @@ export interface Ship {
   name: string;
   size: number;
   image: string;
-  coordinates: { row: number, col: number }[];
+  coordinates: { row: number; col: number }[];
 }
 
 @Component({
   selector: 'app-ontziak-hondaratzen',
   templateUrl: './ontziak-hondaratzen.page.html',
   styleUrls: ['./ontziak-hondaratzen.page.scss'],
-  standalone: false
+  standalone: false,
 })
 export class OntziakHondaratzenPage implements OnInit {
-
+  showWinImage: boolean = false;
+  winImage: string = '';
   playerGrid: Cell[][] = [];
   machineGrid: Cell[][] = [];
 
   shipsConfig: Ship[] = [
-    { name: 'Astra 400 pistola', size: 2, image: 'assets/images/astra400.png', coordinates: [] },
-    { name: 'Astra Cadix revolver', size: 3, image: 'assets/images/astracadix.png', coordinates: [] },
-    { name: 'Ametralladora arina', size: 4, image: 'assets/images/ametralladoraarina.png', coordinates: [] },
-    { name: 'Rifle semiautomatikoa', size: 5, image: 'assets/images/riflesemiautomatikoa.png', coordinates: [] }
+    {
+      name: 'Astra 400 pistola',
+      size: 2,
+      image: 'assets/images/astra400.png',
+      coordinates: [],
+    },
+    {
+      name: 'Astra Cadix revolver',
+      size: 3,
+      image: 'assets/images/astracadix.png',
+      coordinates: [],
+    },
+    {
+      name: 'Ametralladora arina',
+      size: 4,
+      image: 'assets/images/ametralladoraarina.png',
+      coordinates: [],
+    },
+    {
+      name: 'Rifle semiautomatikoa',
+      size: 5,
+      image: 'assets/images/riflesemiautomatikoa.png',
+      coordinates: [],
+    },
   ];
 
   playerShips: Ship[] = [];
@@ -39,7 +61,11 @@ export class OntziakHondaratzenPage implements OnInit {
 
   currentTurn: 'player' | 'machine' = 'player';
 
-  constructor(private navCtrl: NavController, private location: Location) { }
+  constructor(
+    private navCtrl: NavController,
+    private location: Location,
+    private gameService: GameService
+  ) {}
 
   ngOnInit() {
     this.initializeGrids();
@@ -89,7 +115,7 @@ export class OntziakHondaratzenPage implements OnInit {
       const startRow = Math.floor(Math.random() * 10);
       const startCol = Math.floor(Math.random() * 10);
       let fits = true;
-      let coordinates: { row: number, col: number }[] = [];
+      let coordinates: { row: number; col: number }[] = [];
 
       for (let i = 0; i < ship.size; i++) {
         let r = startRow;
@@ -122,19 +148,25 @@ export class OntziakHondaratzenPage implements OnInit {
   }
 
   playerAttack(cell: Cell) {
-    if (this.currentTurn !== 'player') return; 
-    if (cell.hit) return; 
+    if (this.currentTurn !== 'player') return;
+    if (cell.hit) return;
 
     cell.hit = true;
 
     if (cell.ship) {
-      console.log('¡KOLPEA! En la máquina, celda', cell.row, cell.col, 'arma:', cell.ship.name);
+      console.log(
+        '¡KOLPEA! En la máquina, celda',
+        cell.row,
+        cell.col,
+        'arma:',
+        cell.ship.name
+      );
     } else {
       console.log('¡URA! En la máquina, celda', cell.row, cell.col);
     }
 
     if (this.checkWin(this.machineGrid)) {
-      alert("¡Has ganado!");
+      alert('¡Has ganado!');
       return;
     }
 
@@ -157,13 +189,19 @@ export class OntziakHondaratzenPage implements OnInit {
     cell.hit = true;
 
     if (cell.ship) {
-      console.log('La máquina ha hecho KOLPEA en', cell.row, cell.col, 'arma:', cell.ship.name);
+      console.log(
+        'La máquina ha hecho KOLPEA en',
+        cell.row,
+        cell.col,
+        'arma:',
+        cell.ship.name
+      );
     } else {
       console.log('La máquina ha hecho URA en', cell.row, cell.col);
     }
 
     if (this.checkWin(this.playerGrid)) {
-      alert("¡La máquina ha ganado!");
+      alert('¡La máquina ha ganado!');
       return;
     }
     this.currentTurn = 'player';
@@ -179,11 +217,15 @@ export class OntziakHondaratzenPage implements OnInit {
     }
     return true;
   }
-
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/marijesiak-hutsuneak-bete');
+    this.gameService.winCounter += 1;
+    this.winImage = `../../assets/images/caminito${this.gameService.winCounter}.png`;
+    this.showWinImage = true;
+    setTimeout(() => {
+      this.showWinImage = false;
+      this.navCtrl.navigateForward('/tabs/marijesiak-hutsuneak-bete');
+    }, 4000);
   }
-
   goBack() {
     this.location.back();
   }

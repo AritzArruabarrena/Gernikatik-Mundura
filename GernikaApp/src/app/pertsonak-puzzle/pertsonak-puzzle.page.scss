@@ -99,5 +99,22 @@ ion-content {
         transition: 0.3s;
         bottom: 5%; 
       }  
+      .win-image-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000; 
+        z-index: 1000;
+      }
+      
+      .win-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+      }
+      
 }
   

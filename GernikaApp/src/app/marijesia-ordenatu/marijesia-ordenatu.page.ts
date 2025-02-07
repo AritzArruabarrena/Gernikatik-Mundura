@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { NavController} from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { GameService } from 'src/app/services/game.service'; 
 
 @Component({
   selector: 'app-marijesia-ordenatu',
@@ -10,6 +11,7 @@ import { NavController} from '@ionic/angular';
   standalone: false
 })
 export class MarijesiaOrdenatuPage implements OnInit {
+  // Variables y manejo de audio
   private audio: HTMLAudioElement;
   isPlaying = false;
   audioLoaded = false; 
@@ -26,7 +28,15 @@ export class MarijesiaOrdenatuPage implements OnInit {
     "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu."
   ];
 
-  constructor(private location: Location,private navCtrl: NavController,) {
+  // Variables para la imagen ganadora
+  showWinImage: boolean = false;
+  winImage: string = '';
+
+  constructor(
+    private location: Location,
+    private navCtrl: NavController,
+    private gameService: GameService  // Inyección del servicio
+  ) {
     this.audio = new Audio('../../assets/audio/UrteBarriBarri.mp3');
     this.audio.preload = 'auto';
 
@@ -48,7 +58,7 @@ export class MarijesiaOrdenatuPage implements OnInit {
   async playAudio() {
     if (!this.audioLoaded) {
       console.log("Cargando audio en memoria...");
-      await this.loadAudio(); // Precarga antes de reproducir
+      await this.loadAudio();
     }
 
     if (this.audio.paused) {
@@ -80,8 +90,13 @@ export class MarijesiaOrdenatuPage implements OnInit {
 
   checkOrder() {
     if (JSON.stringify(this.sentences) === JSON.stringify(this.correctOrder)) {
-      alert("Correcto. Ordenaste bien las frases.");
-      this.navCtrl.navigateForward('/tabs/produktu-puzzle');
+      this.gameService.winCounter += 1;
+      this.winImage = `../../assets/images/caminito${this.gameService.winCounter}.png`;
+      this.showWinImage = true;
+      setTimeout(() => {
+        this.showWinImage = false;
+        this.navCtrl.navigateForward('/tabs/produktu-puzzle');
+      }, 4000);
     } else {
       alert("Inténtalo de nuevo.");
     }

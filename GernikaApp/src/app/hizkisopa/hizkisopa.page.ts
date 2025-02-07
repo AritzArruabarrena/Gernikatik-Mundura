@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController, GestureController, Gesture } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { GameService } from 'src/app/services/game.service'; // Ajusta la ruta según tu proyecto
 
 @Component({
   selector: 'app-hizkisopa',
@@ -16,7 +17,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   ];
 
   grid: string[] = [];
-  gridSize = 14;  
+  gridSize = 14;
   selectedLetters: number[] = [];
   confirmedLetters: Set<number> = new Set();
   foundWords: Set<string> = new Set();
@@ -25,13 +26,17 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   interval: any;
   isMouseDown: boolean = false;
   startIndex: number = -1;
-
   gesture!: Gesture;
+
+  // Variables para la imagen ganadora
+  showWinImage: boolean = false;
+  winImage: string = '';
 
   constructor(
     private navCtrl: NavController,
     private location: Location,
-    private gestureCtrl: GestureController
+    private gestureCtrl: GestureController,
+    private gameService: GameService  // Inyección del servicio
   ) {}
 
   ngOnInit() {
@@ -44,6 +49,9 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     if (this.gesture) {
       this.gesture.destroy();
     }
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
   generateGrid() {
@@ -52,7 +60,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
       { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: -1, y: 1 },
       { x: -1, y: 0 }, { x: 0, y: -1 }, { x: -1, y: -1 }, { x: 1, y: -1 }
     ];
-    
+
     this.words.forEach((word) => {
       let placed = false;
       let attempts = 0;
@@ -70,11 +78,11 @@ export class HizkisopaPage implements OnInit, OnDestroy {
         attempts++;
       }
     });
-    
+
     this.grid = gridArray.map((char) => char || String.fromCharCode(65 + Math.floor(Math.random() * 26)));
   }
 
-  canPlaceWord(gridArray: string[], word: string, startX: number, startY: number, direction: {x: number, y: number}): boolean {
+  canPlaceWord(gridArray: string[], word: string, startX: number, startY: number, direction: { x: number, y: number }): boolean {
     for (let i = 0; i < word.length; i++) {
       let x = startX + i * direction.x;
       let y = startY + i * direction.y;
@@ -147,10 +155,10 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     const currentCoord = this.getCoordinates(index);
     const dx = currentCoord.col - startCoord.col;
     const dy = currentCoord.row - startCoord.row;
-    
+
     let stepX = 0;
     let stepY = 0;
-    
+
     if (dx === 0 && dy !== 0) {
       stepY = dy > 0 ? 1 : -1;
     } else if (dy === 0 && dx !== 0) {
@@ -161,7 +169,7 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     } else {
       return;
     }
-    
+
     const steps = Math.max(Math.abs(dx), Math.abs(dy));
     const newSelection: number[] = [];
     for (let i = 0; i <= steps; i++) {
@@ -192,8 +200,21 @@ export class HizkisopaPage implements OnInit, OnDestroy {
     };
   }
 
+  // Función para pasar al siguiente nivel. Solo se avanza si se han encontrado todas las palabras.
   goToNextPage() {
-    this.navCtrl.navigateForward('/tabs/marijesia-ordenatu');
+    if (this.wordsLeft === 0) {
+      // Incrementa el contador del servicio
+      this.gameService.winCounter += 1;
+      this.winImage = `../../assets/images/caminito${this.gameService.winCounter}.png`;
+      this.showWinImage = true;
+      setTimeout(() => {
+        this.showWinImage = false;
+        // Navega a la siguiente pantalla (por ejemplo, a Marijesia Ordenatu)
+        this.navCtrl.navigateForward('/tabs/marijesia-ordenatu');
+      }, 4000);
+    } else {
+      alert('Aún no has completado el juego.');
+    }
   }
 
   goBack() {

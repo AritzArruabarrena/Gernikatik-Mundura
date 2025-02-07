@@ -6,22 +6,21 @@
     (click)="goBack()"
   />
   <div class="game-container">
-    
     <div class="boards">
       <div class="board-section">
         <h3>Makina</h3>
         <div class="board">
           <div *ngFor="let row of machineGrid" class="board-row">
-            <div 
-              *ngFor="let cell of row" 
+            <div
+              *ngFor="let cell of row"
               class="board-cell"
               (click)="playerAttack(cell)"
               [ngClass]="{'hit': cell.hit, 'miss': cell.hit && !cell.ship}"
             >
               <ng-container *ngIf="cell.hit">
-                <img 
-                  *ngIf="cell.ship" 
-                  [src]="cell.ship.image" 
+                <img
+                  *ngIf="cell.ship"
+                  [src]="cell.ship.image"
                   [alt]="cell.ship.name"
                 />
                 <span *ngIf="!cell.ship" class="water">URA</span>
@@ -30,33 +29,39 @@
           </div>
         </div>
       </div>
-      
+
       <div class="board-section">
         <h3>Pertsona</h3>
         <div class="board">
           <div *ngFor="let row of playerGrid" class="board-row">
-            <div 
-              *ngFor="let cell of row" 
+            <div
+              *ngFor="let cell of row"
               class="board-cell"
               [ngClass]="{'hit': cell.hit, 'miss': cell.hit && !cell.ship}"
             >
               <ng-container *ngIf="cell.hit">
-                <img 
-                  *ngIf="cell.ship" 
-                  [src]="cell.ship.image" 
+                <img
+                  *ngIf="cell.ship"
+                  [src]="cell.ship.image"
                   [alt]="cell.ship.name"
                 />
                 <span *ngIf="!cell.ship" class="water">URA</span>
               </ng-container>
               <ng-container *ngIf="!cell.hit && cell.ship">
-                <img [src]="cell.ship.image" [alt]="cell.ship.name" class="faint-ship">
+                <img
+                  [src]="cell.ship.image"
+                  [alt]="cell.ship.name"
+                  class="faint-ship"
+                />
               </ng-container>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
   <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image" />
+  </div>
 </ion-content>

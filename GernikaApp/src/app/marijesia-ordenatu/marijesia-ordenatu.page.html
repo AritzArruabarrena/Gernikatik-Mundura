@@ -25,4 +25,8 @@
     </div>
   </div>
   <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image" />
+  </div>
 </ion-content>

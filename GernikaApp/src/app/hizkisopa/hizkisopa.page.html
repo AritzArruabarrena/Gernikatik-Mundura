@@ -5,6 +5,7 @@
     class="corner-icon corner-icon-left"
     (click)="goBack()"
   />
+
   <div class="game-container">
     <p>{{ timer }}</p>
     <div class="letter-grid">
@@ -18,17 +19,24 @@
       </div>
     </div>
   </div>
+
   <div class="bottom-bar">
     <p>{{ wordsLeft }} falta dira</p>
     <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
   </div>
+
   <div class="word-list">
     <ul>
       <li 
         *ngFor="let word of words" 
-        [class.found]="foundWords.has(word)">
+        [class.found]="foundWords.has(word)"
+      >
         {{ word }}
       </li>
     </ul>
-  </div>  
+  </div>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image" />
+  </div>
 </ion-content>

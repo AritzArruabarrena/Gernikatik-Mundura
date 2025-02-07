@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular'; 
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { GameService } from 'src/app/services/game.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-peruhitzegiten',
@@ -12,17 +13,29 @@ import { Location } from '@angular/common';
   imports: [CommonModule, IonicModule] 
 })
 export class PeruhitzegitenPage {
-  constructor(private router: Router, private location: Location) {}  // Combina los servicios en un único constructor
+  showWinImage: boolean = false;
+  winImage: string = '';
 
-  // Método para navegar a la siguiente página
+  constructor(
+    private router: Router, 
+    private location: Location,
+    private gameService: GameService  
+  ) {}
+
   goToNextPage() {
-    this.router.navigateByUrl('/tabs/kartakaurkitu'); 
+    this.gameService.winCounter = 0;
+    this.winImage = `../../assets/images/caminito${this.gameService.winCounter}.png`;
+    this.showWinImage = true;
+    setTimeout(() => {
+      this.showWinImage = false;
+      this.router.navigateByUrl('/tabs/kartakaurkitu');
+    }, 4000);
   }
 
-  // Método para regresar a la página anterior
   goBack() {
-    this.location.back(); // Regresa a la página anterior
+    this.location.back();
   }
+
   goMap(){
     this.router.navigateByUrl('/tabs/mapa');
   }

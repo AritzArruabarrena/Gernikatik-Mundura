@@ -14,4 +14,8 @@
   ></iframe>
 
   <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image">
+  </div>
 </ion-content>
