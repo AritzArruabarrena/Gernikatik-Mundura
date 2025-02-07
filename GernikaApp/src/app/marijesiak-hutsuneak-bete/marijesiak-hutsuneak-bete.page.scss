@@ -1,52 +1,73 @@
 ion-content {
-    --background: #a5d300;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 20px;
-    position: relative;
-    touch-action: none;
-  }
+  --background: #a5d300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+  position: relative;
+  touch-action: none;
+}
 
-  .game-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-  }
-  
-  .input-inline {
-    display: inline-block;
-    width: 75px;       // Ajusta este valor para modificar el ancho
-    min-width: 60px;
-    vertical-align: baseline;
-    margin: 0 4px;
-  }
+.game-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
 
-  .next-button {
-    border: 2px solid white;
-    background-color: #ff6f00;
-    color: white;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 6px 12px;
-    width: 80%;
-    max-width: 200px;
-    height: 50px;
-    cursor: pointer;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    outline: none;
-    transition: 0.3s;
-    bottom: 3%; 
+.corner-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+
+  &-left {
+    top: env(safe-area-inset-top, 15px);
+    left: 10px;
   }
-  
-  
+  &-right {
+    margin-right: 15px;
+    right: 10px;
+  }
+}
+
+.input-inline {
+  display: inline-block;
+  width: 90px;      
+  min-width: 60px;
+  vertical-align: baseline;
+  margin: 0 4px;
+}
+
+/* Estilo para inputs que tengan error */
+::ng-deep ion-input.input-error {
+  --border-color: red;
+  border: 2px solid red;
+  background-color: #ffe5e5;
+}
+
+.next-button {
+  border: 2px solid white;
+  background-color: #ff6f00;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 6px 12px;
+  width: 80%;
+  max-width: 200px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  outline: none;
+  transition: 0.3s;
+  bottom: 3%;
+}
