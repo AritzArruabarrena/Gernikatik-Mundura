@@ -210,10 +210,10 @@ export class HizkisopaPage implements OnInit, OnDestroy {
       setTimeout(() => {
         this.showWinImage = false;
         // Navega a la siguiente pantalla (por ejemplo, a Marijesia Ordenatu)
-        this.navCtrl.navigateForward('/tabs/marijesia-ordenatu');
+        this.navCtrl.navigateForward('/tabs/tab1');
       }, 4000);
     } else {
-      alert('Aún no has completado el juego.');
+      alert('Ez duzu jokoa bukatu!');
     }
   }
 

@@ -31,7 +31,7 @@ export class PertsonakPuzzlePage implements OnInit {
     this.showWinImage = true;
     setTimeout(() => {
       this.showWinImage = false;
-      this.navCtrl.navigateForward('/tabs/galderak-erantzuten');
+      this.navCtrl.navigateForward('/tabs/tab1');
     }, 4000);
   }
 }

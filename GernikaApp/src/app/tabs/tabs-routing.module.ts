@@ -68,6 +68,14 @@ const routes: Routes = [
         loadChildren: () => import('../marijesiak-hutsuneak-bete-3/marijesiak-hutsuneak-bete-3.module').then(m => m.MarijesiakHutsuneakBete3PageModule)
       },
       {
+        path: 'peru-kartak-letra-zopa',
+        loadChildren: () => import('../peru-kartak-letra-zopa/peru-kartak-letra-zopa.module').then(m => m.PeruKartakLetraZopaPageModule)
+      },
+      {
+        path: 'peru-puzzle',
+        loadChildren: () => import('../peru-puzzle/peru-puzzle.module').then(m => m.PeruPuzzlePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
