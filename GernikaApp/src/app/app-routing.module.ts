@@ -49,7 +49,8 @@ const routes: Routes = [
   {
     path: 'marijesiak-hutsuneak-bete',
     loadChildren: () => import('./marijesiak-hutsuneak-bete/marijesiak-hutsuneak-bete.module').then( m => m.MarijesiakHutsuneakBetePageModule)
-  },  {
+  },
+  {
     path: 'marijesiak-hutsuneak-bete-1',
     loadChildren: () => import('./marijesiak-hutsuneak-bete-1/marijesiak-hutsuneak-bete-1.module').then( m => m.MarijesiakHutsuneakBete1PageModule)
   },
@@ -68,6 +69,19 @@ const routes: Routes = [
   {
     path: 'peru-puzzle',
     loadChildren: () => import('./peru-puzzle/peru-puzzle.module').then( m => m.PeruPuzzlePageModule)
+
+  },
+  {
+    path: 'mari-galderakerantzuten',
+    loadChildren: () => import('./mari-galderakerantzuten/mari-galderakerantzuten.module').then( m => m.MariGalderakerantzutenPageModule)
+  },
+  {
+    path: 'mari-marijesiak',
+    loadChildren: () => import('./mari-marijesiak/mari-marijesiak.module').then( m => m.MariMarijesiakPageModule)
+  },
+  {
+    path: 'mari-ontziakhondaratzen',
+    loadChildren: () => import('./mari-ontziakhondaratzen/mari-ontziakhondaratzen.module').then( m => m.MariOntziakhondaratzenPageModule)
   },
 
 

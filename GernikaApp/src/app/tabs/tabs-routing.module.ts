@@ -76,6 +76,18 @@ const routes: Routes = [
         loadChildren: () => import('../peru-puzzle/peru-puzzle.module').then(m => m.PeruPuzzlePageModule)
       },
       {
+        path: 'mari-galderakerantzuten',
+        loadChildren: () => import('../mari-galderakerantzuten/mari-galderakerantzuten.module').then( m => m.MariGalderakerantzutenPageModule)
+      },
+      {
+        path: 'mari-marijesiak',
+        loadChildren: () => import('../mari-marijesiak/mari-marijesiak.module').then( m => m.MariMarijesiakPageModule)
+      },
+      {
+        path: 'mari-ontziakhondaratzen',
+        loadChildren: () => import('../mari-ontziakhondaratzen/mari-ontziakhondaratzen.module').then( m => m.MariOntziakhondaratzenPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
