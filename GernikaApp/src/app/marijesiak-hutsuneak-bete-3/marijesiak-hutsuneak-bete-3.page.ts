@@ -80,7 +80,6 @@ playAudio() {
     this.audio.pause();
     this.audio.currentTime = 0;
   } else {
-    // Si no existe, se crea la instancia
     this.audio = new Audio('../../assets/audio/musikalaugarrenzatia.mp3');
   }
 
@@ -89,20 +88,14 @@ playAudio() {
   });
 }
 
-/**
- * Navega a la página siguiente y detiene el audio si se está reproduciendo.
- */
 goToNextPage() {
   if (this.audio) {
     this.audio.pause();
     this.audio.currentTime = 0;
   }
-  this.navCtrl.navigateForward('/tabs/tab1');
+  this.navCtrl.navigateForward('/tabs/marijesia-ordenatu');
 }
 
-/**
- * Vuelve a la página anterior.
- */
 goBack() {
   this.location.back();
 }

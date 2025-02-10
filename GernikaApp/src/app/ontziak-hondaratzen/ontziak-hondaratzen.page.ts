@@ -223,7 +223,7 @@ export class OntziakHondaratzenPage implements OnInit {
     this.showWinImage = true;
     setTimeout(() => {
       this.showWinImage = false;
-      this.navCtrl.navigateForward('/tabs/marijesiak-hutsuneak-bete');
+      this.navCtrl.navigateForward('/tabs/tab1');
     }, 4000);
   }
   goBack() {

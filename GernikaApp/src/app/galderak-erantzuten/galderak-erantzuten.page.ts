@@ -108,7 +108,7 @@ export class GalderakErantzutenPage implements OnInit {
     this.showWinImage = true;
     setTimeout(() => {
       this.showWinImage = false;
-      this.navCtrl.navigateForward('/tabs/ontziak-hondaratzen');
+      this.navCtrl.navigateForward('/tabs/tab1');
     }, 4000);
   }
 

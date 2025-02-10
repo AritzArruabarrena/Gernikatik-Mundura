@@ -61,6 +61,18 @@ const routes: Routes = [
     path: 'marijesiak-hutsuneak-bete-3',
     loadChildren: () => import('./marijesiak-hutsuneak-bete-3/marijesiak-hutsuneak-bete-3.module').then( m => m.MarijesiakHutsuneakBete3PageModule)
   },
+  {
+    path: 'mari-galderakerantzuten',
+    loadChildren: () => import('./mari-galderakerantzuten/mari-galderakerantzuten.module').then( m => m.MariGalderakerantzutenPageModule)
+  },
+  {
+    path: 'mari-marijesiak',
+    loadChildren: () => import('./mari-marijesiak/mari-marijesiak.module').then( m => m.MariMarijesiakPageModule)
+  },
+  {
+    path: 'mari-ontziakhondaratzen',
+    loadChildren: () => import('./mari-ontziakhondaratzen/mari-ontziakhondaratzen.module').then( m => m.MariOntziakhondaratzenPageModule)
+  },
 
 
 ];
