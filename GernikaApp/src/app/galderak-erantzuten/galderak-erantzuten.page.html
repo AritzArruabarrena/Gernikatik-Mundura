@@ -10,34 +10,44 @@
     <h1 class="titulua">BATZARRETXEA ETA ARBOLA</h1>
     <!-- Contenedor para los textos de las opciones -->
     <div class="texto-opciones">
-      <span *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index">
+      <span
+        *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index"
+      >
         {{ letras[i] }}) {{ opcion.texto }}
       </span>
     </div>
 
     <!-- Contenedor para la imagen de la pregunta -->
     <div *ngIf="preguntas[preguntaActual].imagen" class="imagen-container">
-      <img [src]="preguntas[preguntaActual].imagen" alt="Imagen de la pregunta" class="imagen-opcion" />
+      <img
+        [src]="preguntas[preguntaActual].imagen"
+        alt="Imagen de la pregunta"
+        class="imagen-opcion"
+      />
     </div>
 
     <!-- Contenedor para los botones alineados en fila -->
     <div class="opciones-container">
-      <ion-button *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index"
+      <ion-button
+        *ngFor="let opcion of preguntas[preguntaActual].opciones; let i = index"
         (click)="seleccionarRespuesta(opcion)"
-        [color]="respuestaSeleccionada === null ? 'primary' : (opcion.correcta ? 'success' : 'danger')">
+        [color]="respuestaSeleccionada === null ? 'primary' : (opcion.correcta ? 'success' : 'danger')"
+      >
         {{ letras[i] }}
       </ion-button>
     </div>
 
-    <!-- Botón "Hurrengoa" dentro de game-container -->
     <div class="next-button-container" *ngIf="hurrengoa">
       <button class="next-button" (click)="Hurrengoa()">Hurrengoa</button>
     </div>
 
     <!-- Contenedor del personaje y diálogo -->
     <div class="character-container">
-     
-      <img src="../../assets/images/InvertidaMari.png" alt="Personaje 1" class="character" />
+      <img
+        src="../../assets/images/InvertidaMari.png"
+        alt="Personaje 1"
+        class="character"
+      />
       <div class="dialog">
         <div class="dialog-arrow"></div>
         <p>{{ preguntas[preguntaActual].pregunta }}</p>
@@ -45,3 +55,6 @@
     </div>
   </div>
 </ion-content>
+<div *ngIf="showWinImage" class="win-image-overlay">
+  <img [src]="winImage" alt="Caminito Image" class="win-image" />
+</div>

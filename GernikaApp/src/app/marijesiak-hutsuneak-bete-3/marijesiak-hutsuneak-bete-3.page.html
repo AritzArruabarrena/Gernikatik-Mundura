@@ -6,6 +6,7 @@
     (click)="goBack()"
   />
 
+  <!-- Contenedor con estilo personalizado -->
   <div class="game-container">
     <img
       src="../../assets/icon/Volume-up.png"
@@ -21,7 +22,8 @@
         class="input-inline"
         [ngClass]="{'input-error': errorRespuesta1}"
         clearInput="true"
-      ></ion-input
+      >
+      </ion-input
       ><br />
       hiru intxaurtxu eta lau gaztaina<br />
       Haren gainetik launa sagar<br />
@@ -32,7 +34,8 @@
         class="input-inline"
         [ngClass]="{'input-error': errorRespuesta2}"
         clearInput="true"
-      ></ion-input
+      >
+      </ion-input
       ><br /><br />
 
       Ateondoan hotzez hiltzeko <br />
@@ -43,32 +46,33 @@
         class="input-inline"
         [ngClass]="{'input-error': errorRespuesta3}"
         clearInput="true"
-      ></ion-input>
+      >
+      </ion-input>
       gaitu bialdu. <br />
       Zurei begira gagozan artean <br />
       egingo jaku berandu. <br />
       <br />
 
-      Hemen gatoz
-      <ion-input
-        [(ngModel)]="respuesta4"
-        placeholder="hitza"
-        class="input-inline"
-        [ngClass]="{'input-error': errorRespuesta4}"
-        clearInput="true"
-      ></ion-input
-      >, <br />
-      kanpae
-      <ion-input
-        [(ngModel)]="respuesta5"
-        placeholder="hitza"
-        class="input-inline"
-        [ngClass]="{'input-error': errorRespuesta5}"
-        clearInput="true"
-      ></ion-input>
-      bi, <br />
-      emoizu limosnea <br />
-      Jangoikoagaitik. <br />
+      Hemen gatoz <ion-input
+      [(ngModel)]="respuesta4"
+      placeholder="hitza"
+      class="input-inline"
+      [ngClass]="{'input-error': errorRespuesta4}"
+      clearInput="true"
+    >
+    </ion-input>, <br>
+    kanpae <ion-input
+    [(ngModel)]="respuesta5"
+    placeholder="hitza"
+    class="input-inline"
+    [ngClass]="{'input-error': errorRespuesta5}"
+    clearInput="true"
+  >
+  </ion-input> bi, <br>
+  emoizu limosnea <br>
+  Jangoikoagaitik. <br>
+
+
     </p>
   </div>
 
@@ -84,13 +88,10 @@
     </div>
   </div>
 
+  <!-- Resto del contenido, como la letra-grid, bottom-bar, etc. -->
   <div class="bottom-bar">
     <button class="next-button" (click)="verificarRespuestas()">
       HURRENGOA
     </button>
-  </div>
-
-  <div *ngIf="showWinImage" class="win-image-overlay">
-    <img [src]="winImage" alt="Caminito Image" class="win-image" />
   </div>
 </ion-content>
