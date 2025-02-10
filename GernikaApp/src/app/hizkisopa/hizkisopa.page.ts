@@ -55,31 +55,49 @@ export class HizkisopaPage implements OnInit, OnDestroy {
   }
 
   generateGrid() {
-    let gridArray = new Array(this.gridSize * this.gridSize).fill(null);
+    let gridArray = new Array(this.gridSize * this.gridSize).fill(null); 
     const directions = [
-      { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: -1, y: 1 },
-      { x: -1, y: 0 }, { x: 0, y: -1 }, { x: -1, y: -1 }, { x: 1, y: -1 }
+      { x: 1, y: 0 },
+      { x: 0, y: 1 },
+      { x: 1, y: 1 },
+      { x: -1, y: 1 },
+      { x: -1, y: 0 },
+      { x: 0, y: -1 },
+      { x: -1, y: -1 },
+      { x: 1, y: -1 }
     ];
-
-    this.words.forEach((word) => {
+    
+    const sortedWords = [...this.words].sort((a, b) => b.length - a.length);
+    
+    sortedWords.forEach((word) => {
       let placed = false;
       let attempts = 0;
-      while (!placed && attempts < 200) {
-        let direction = directions[Math.floor(Math.random() * directions.length)];
-        let startX = Math.floor(Math.random() * this.gridSize);
-        let startY = Math.floor(Math.random() * this.gridSize);
-
+      const maxAttempts = 500; 
+      
+      while (!placed && attempts < maxAttempts) {
+        const direction = directions[Math.floor(Math.random() * directions.length)];
+        const startX = Math.floor(Math.random() * this.gridSize);
+        const startY = Math.floor(Math.random() * this.gridSize);
+        
         if (this.canPlaceWord(gridArray, word, startX, startY, direction)) {
-          word.split('').forEach((char, i) => {
-            gridArray[(startY + i * direction.y) * this.gridSize + (startX + i * direction.x)] = char;
-          });
+          for (let i = 0; i < word.length; i++) {
+            const x = startX + i * direction.x;
+            const y = startY + i * direction.y;
+            gridArray[y * this.gridSize + x] = word[i];
+          }
           placed = true;
         }
         attempts++;
       }
+      
+      if (!placed) {
+        console.warn(`No se pudo colocar la palabra: ${word}`);
+      }
     });
-
-    this.grid = gridArray.map((char) => char || String.fromCharCode(65 + Math.floor(Math.random() * 26)));
+    
+    this.grid = gridArray.map((char) =>
+      char || String.fromCharCode(65 + Math.floor(Math.random() * 26))
+    );
   }
 
   canPlaceWord(gridArray: string[], word: string, startX: number, startY: number, direction: { x: number, y: number }): boolean {
