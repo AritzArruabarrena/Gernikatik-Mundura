@@ -23,7 +23,7 @@ interface Marker {
 })
 export class MapaPage implements AfterViewInit {
   map: any;
-  markers: Marker[] = [];  // Inicialmente vacío, se llenará con los datos de la API
+  markers: Marker[] = [];  // Inicialmente vacío, se llenará con los datos de la API o del localStorage
   infoWindow: any;
 
   // Inyectamos HttpClient y Location
@@ -51,7 +51,7 @@ export class MapaPage implements AfterViewInit {
       this.infoWindow = new google.maps.InfoWindow();
 
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        // Una vez cargado el mapa, obtenemos los marcadores desde la API
+        // Una vez cargado el mapa, se obtienen los marcadores desde la API (o del localStorage en caso de error)
         this.fetchMarkers();
         mapEle.classList.add('show-map');
       });
@@ -60,33 +60,61 @@ export class MapaPage implements AfterViewInit {
     }
   }
 
-  // Método para obtener los marcadores desde la API
+  /**
+   * Método para obtener los marcadores desde la API.
+   * Si la respuesta es correcta se guarda en localStorage para usarla como respaldo.
+   */
   fetchMarkers() {
     const url = 'http://192.168.73.128/api/places';
 
     this.http.get<any>(url).subscribe(
       response => {
-        // Se espera que la respuesta tenga la propiedad "data"
         if (response && response.data) {
-          // Convertir cada objeto del array a nuestro formato Marker
-          this.markers = response.data.map((item: any) => ({
-            position: {
-              lat: parseFloat(item.latitude),
-              lng: parseFloat(item.longitude)
-            },
-            title: item.name
-          }));
-
-          // Una vez obtenidos los marcadores, los renderizamos en el mapa
-          this.renderMarkers();
+          // Guardamos la respuesta en localStorage para usarla como respaldo
+          localStorage.setItem('markersData', JSON.stringify(response));
+          this.procesarMarkers(response);
         } else {
-          console.error('La respuesta de la API no contiene la propiedad "data".', response);
+          console.error('La respuesta de la API no contiene la propiedad "data":', response);
+          this.cargarMarkersDesdeLocalStorage();
         }
       },
       error => {
-        console.error('Error al obtener los marcadores:', error);
+        console.error('Error al obtener los marcadores desde la API:', error);
+        this.cargarMarkersDesdeLocalStorage();
       }
     );
+  }
+
+  /**
+   * Procesa la respuesta de la API (o de localStorage) y transforma los datos en nuestro formato Marker.
+   * @param response Objeto con la propiedad "data" que contiene los marcadores.
+   */
+  procesarMarkers(response: any) {
+    this.markers = response.data.map((item: any) => ({
+      position: {
+        lat: parseFloat(item.latitude),
+        lng: parseFloat(item.longitude)
+      },
+      title: item.name
+    }));
+    this.renderMarkers();
+  }
+
+  /**
+   * Intenta cargar los marcadores desde localStorage en caso de error en la API.
+   */
+  cargarMarkersDesdeLocalStorage() {
+    const storedData = localStorage.getItem('markersData');
+    if (storedData) {
+      try {
+        const response = JSON.parse(storedData);
+        this.procesarMarkers(response);
+      } catch (error) {
+        console.error('Error parseando los datos almacenados en localStorage:', error);
+      }
+    } else {
+      console.error('No hay datos almacenados en localStorage para los marcadores.');
+    }
   }
 
   renderMarkers() {

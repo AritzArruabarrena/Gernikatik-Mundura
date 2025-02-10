@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NavController } from '@ionic/angular';
-import { GameService } from 'src/app/services/game.service'; 
+import { GameService } from 'src/app/services/game.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-marijesia-ordenatu',
@@ -16,17 +17,9 @@ export class MarijesiaOrdenatuPage implements OnInit {
   isPlaying = false;
   audioLoaded = false; 
 
-  sentences = [
-    "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu.",
-    "1. Agur urte bat, barria dator kanta “urte barri barri”, joan jakuna gogoz eskertu ondo_etorri barriari; bake bidean emon pausua, Barri Ona iragarri, gure ustea ta konfiantza Jaunagan bakarrik jarri.",
-    "2. Barri Onaren irakurketan bost minutu egunero, alkarteagaz meza ospatzen joateko pozik gero. Uda sasoian umorez bete trikia eta pandero ermita eta santu guztiei errezatuz bero bero."
-  ];
-
-  correctOrder = [
-    "1. Agur urte bat, barria dator kanta “urte barri barri”, joan jakuna gogoz eskertu ondo_etorri barriari; bake bidean emon pausua, Barri Ona iragarri, gure ustea ta konfiantza Jaunagan bakarrik jarri.",
-    "2. Barri Onaren irakurketan bost minutu egunero, alkarteagaz meza ospatzen joateko pozik gero. Uda sasoian umorez bete trikia eta pandero ermita eta santu guztiei errezatuz bero bero.",
-    "3. Pobrea eta apala dana inoiz ez dagigun saldu, elizan eta gero etxean fededun legez azaldu, esperantza ta maitetasuna indartu eta ez galdu: Jesus laguna ta barri ona sakondu eta zabaldu."
-  ];
+  // Los versos se obtendrán desde la API
+  sentences: string[] = [];   // Arreglo mezclado para que el usuario lo ordene
+  correctOrder: string[] = [];  // Arreglo con el orden correcto (por número de verso)
 
   // Variables para la imagen ganadora
   showWinImage: boolean = false;
@@ -35,18 +28,21 @@ export class MarijesiaOrdenatuPage implements OnInit {
   constructor(
     private location: Location,
     private navCtrl: NavController,
-    private gameService: GameService  // Inyección del servicio
+    private gameService: GameService,
+    private http: HttpClient   // Inyección de HttpClient para consumir la API
   ) {
     this.audio = new Audio('../../assets/audio/UrteBarriBarri.mp3');
     this.audio.preload = 'auto';
 
     this.audio.addEventListener('canplaythrough', () => {
       this.audioLoaded = true;
-      console.log("Audio listo para reproducirse");
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Al iniciar el componente, se obtienen los datos de la canción
+    this.fetchSongData();
+  }
 
   goBack() {
     this.audio.pause();
@@ -57,7 +53,6 @@ export class MarijesiaOrdenatuPage implements OnInit {
 
   async playAudio() {
     if (!this.audioLoaded) {
-      console.log("Cargando audio en memoria...");
       await this.loadAudio();
     }
 
@@ -78,7 +73,6 @@ export class MarijesiaOrdenatuPage implements OnInit {
       this.audio.src = URL.createObjectURL(blob);
       this.audio.load();
       this.audioLoaded = true;
-      console.log("Audio precargado correctamente.");
     } catch (error) {
       console.error("Error precargando el audio:", error);
     }
@@ -100,5 +94,74 @@ export class MarijesiaOrdenatuPage implements OnInit {
     } else {
       alert("Inténtalo de nuevo.");
     }
+  }
+
+  /**
+   * Método para obtener la canción y sus versos desde la API.
+   * Si la API responde correctamente, se guarda la respuesta en localStorage;
+   * en caso de error, se carga la copia almacenada.
+   */
+  fetchSongData() {
+    const url = 'http://192.168.73.128/api/song';
+    this.http.get<any>(url).subscribe(
+      response => {
+        if (response && response.verses) {
+          // Guardamos la respuesta en localStorage para usarla como respaldo
+          localStorage.setItem('songData', JSON.stringify(response));
+          this.procesarCancion(response);
+        } else {
+          console.error('La respuesta de la API no contiene versos:', response);
+          this.cargarCancionDesdeLocalStorage();
+        }
+      },
+      error => {
+        console.error('Error al obtener la canción desde la API:', error);
+        this.cargarCancionDesdeLocalStorage();
+      }
+    );
+  }
+
+  /**
+   * Intenta cargar la canción desde localStorage en caso de no tener conexión o error en la API.
+   */
+  cargarCancionDesdeLocalStorage() {
+    const storedData = localStorage.getItem('songData');
+    if (storedData) {
+      try {
+        const response = JSON.parse(storedData);
+        this.procesarCancion(response);
+      } catch (error) {
+        console.error('Error parseando los datos almacenados:', error);
+      }
+    } else {
+      console.error('No hay datos almacenados en localStorage.');
+      // Aquí podrías notificar al usuario que no hay datos disponibles o activar otro fallback.
+    }
+  }
+
+  /**
+   * Procesa la respuesta (de la API o de localStorage) y establece los arrays correctOrder y sentences.
+   * @param response Objeto con la información de la canción y sus versos.
+   */
+  procesarCancion(response: any) {
+    // Ordenamos los versos por su número (por si acaso no vienen ordenados)
+    const verses = response.verses.sort((a: any, b: any) => a.number - b.number);
+    // Convertimos cada verso uniendo sus líneas en una sola cadena
+    this.correctOrder = verses.map((verse: any) => verse.lines.join(' '));
+    // Creamos un arreglo mezclado a partir del orden correcto para que el usuario deba ordenarlo
+    this.sentences = this.shuffleArray([...this.correctOrder]);
+  }
+
+  /**
+   * Función auxiliar para mezclar un arreglo (algoritmo Fisher-Yates).
+   * @param array Arreglo a mezclar.
+   * @returns El arreglo mezclado.
+   */
+  shuffleArray(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 }
