@@ -1,0 +1,7 @@
+{
+  "name": "GernikaApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

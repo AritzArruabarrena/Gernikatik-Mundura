@@ -1,0 +1,42 @@
+<ion-content class="ion-padding" style="touch-action: none">
+  <img
+    src="../../assets/icon/arrow.png"
+    alt="Icono Izquierda"
+    class="corner-icon corner-icon-left"
+    (click)="goBack()"
+  />
+
+  <div class="game-container">
+    <p>{{ timer }}</p>
+    <div class="letter-grid">
+      <div
+        *ngFor="let letter of grid; let i = index"
+        class="letter"
+        [attr.data-index]="i"
+        [class.selected]="selectedLetters.includes(i) || confirmedLetters.has(i)"
+      >
+        {{ letter }}
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <p>{{ wordsLeft }} falta dira</p>
+    <button class="next-button" (click)="goToNextPage()">HURRENGOA</button>
+  </div>
+
+  <div class="word-list">
+    <ul>
+      <li 
+        *ngFor="let word of words" 
+        [class.found]="foundWords.has(word)"
+      >
+        {{ word }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image" />
+  </div>
+</ion-content>

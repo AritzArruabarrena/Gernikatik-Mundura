@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="background">
+    <img
+      src="../../assets/images/DALL·E-2024-12-04-12.01.png"
+      alt="Fondo"
+      class="background-image"
+    />
+
+    <img
+      src="../../assets/icon/map.png"
+      alt="Icono Derecha"
+      class="corner-icon corner-icon-right"
+      (click)="goMap()"
+    />
+
+    <div class="content-center">
+      <svg width="320" height="180">
+        <defs>
+          <path id="curve1" d="M 10,60 Q 160,-10 310,60" fill="transparent" />
+          <path id="curve2" d="M 10,120 Q 160,50 310,120" fill="transparent" />
+        </defs>
+        <text class="styled-title">
+          <textPath href="#curve1" startOffset="50%" text-anchor="middle">
+            GERNIKATIK
+          </textPath>
+        </text>
+        <text class="styled-title">
+          <textPath href="#curve2" startOffset="50%" text-anchor="middle">
+            MUNDURA
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    <button expand="block" class="center-button" (click)="verificarUbicacion()">
+      JOLASTU!
+    </button>
+
+    <div class="character-section">
+      <img
+        src="../../assets/images/MariArgazkia-removebg-preview.png"
+        alt="Mari"
+        class="character-Mari"
+      />
+      <img
+        src="../../assets/images/PeruArgazkia-removebg-preview.png"
+        alt="Peru"
+        class="character-Peru"
+      />
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,76 @@
+<ion-content class="ion-padding" style="touch-action: none">
+    <img
+      src="../../assets/icon/arrow.png"
+      alt="Icono Izquierda"
+      class="corner-icon corner-icon-left"
+      (click)="goBack()"
+    />
+  
+    <!-- Contenedor con estilo personalizado -->
+    <div class="game-container">
+        <img
+        src="../../assets/icon/Volume-up.png"
+        alt="Subir volumen"
+        class="corner-icon corner-icon-right"
+        (click)="playAudio()"
+      />
+      <p>
+        <ion-input
+          [(ngModel)]="respuesta1"
+          placeholder="hitza"
+          class="input-inline"
+          [ngClass]="{'input-error': errorRespuesta1}"
+          clearInput="true">
+        </ion-input>
+        datoz<br>
+        Jesus adoratzen.<br>
+        Gu bere hemen gatoz<br>
+        limosnea batzen.<br><br>
+  
+        Apalazio zalduna<br>
+        Hiru Erregeen
+        <ion-input
+          [(ngModel)]="respuesta2"
+          placeholder="hitza"
+          class="input-inline"
+          [ngClass]="{'input-error': errorRespuesta2}"
+          clearInput="true">
+        </ion-input>,
+        <br>
+        zotzak eta paluak<br>
+        estudianteen kontuak.<br><br>
+  
+        Estudianteak sasirik sasi<br>
+        asko
+        <ion-input
+          [(ngModel)]="respuesta3"
+          placeholder="hitza"
+          class="input-inline"
+          [ngClass]="{'input-error': errorRespuesta3}"
+          clearInput="true">
+        </ion-input>
+        eta gitxi ikasi,<br>
+        txoritxua kaiolara<br>
+        estudiantea eskolara.
+      </p>
+    </div>
+
+    <div class="image-container">
+      <img
+        src="../../assets/images/PeruArgazkia-removebg-preview.png"
+        alt="Peru Argazkia"
+        class="image-peru"
+      />
+      <div class="info-box">
+        <p>Bete ezazu hutsuneak "hitza"-ren lekuan</p>
+        <div class="arrow"></div>
+      </div>
+    </div>
+    
+  
+    <!-- Resto del contenido, como la letra-grid, bottom-bar, etc. -->
+    <div class="bottom-bar">
+      <button class="next-button" (click)="verificarRespuestas()">HURRENGOA</button>
+    </div>
+  </ion-content>
+  

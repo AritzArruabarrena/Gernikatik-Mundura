@@ -1,0 +1,97 @@
+<ion-content class="ion-padding" style="touch-action: none">
+  <img
+    src="../../assets/icon/arrow.png"
+    alt="Icono Izquierda"
+    class="corner-icon corner-icon-left"
+    (click)="goBack()"
+  />
+
+  <!-- Contenedor con estilo personalizado -->
+  <div class="game-container">
+    <img
+      src="../../assets/icon/Volume-up.png"
+      alt="Subir volumen"
+      class="corner-icon corner-icon-right"
+      (click)="playAudio()"
+    />
+    <p>
+      Apalazio
+      <ion-input
+        [(ngModel)]="respuesta1"
+        placeholder="hitza"
+        class="input-inline"
+        [ngClass]="{'input-error': errorRespuesta1}"
+        clearInput="true"
+      >
+      </ion-input
+      ><br />
+      hiru intxaurtxu eta lau gaztaina<br />
+      Haren gainetik launa sagar<br />
+      gure altzoa
+      <ion-input
+        [(ngModel)]="respuesta2"
+        placeholder="hitza"
+        class="input-inline"
+        [ngClass]="{'input-error': errorRespuesta2}"
+        clearInput="true"
+      >
+      </ion-input
+      ><br /><br />
+
+      Ateondoan hotzez hiltzeko <br />
+      amak
+      <ion-input
+        [(ngModel)]="respuesta3"
+        placeholder="hitza"
+        class="input-inline"
+        [ngClass]="{'input-error': errorRespuesta3}"
+        clearInput="true"
+      >
+      </ion-input>
+      gaitu bialdu. <br />
+      Zurei begira gagozan artean <br />
+      egingo jaku berandu. <br />
+      <br />
+
+      Hemen gatoz <ion-input
+      [(ngModel)]="respuesta4"
+      placeholder="hitza"
+      class="input-inline"
+      [ngClass]="{'input-error': errorRespuesta4}"
+      clearInput="true"
+    >
+    </ion-input>, <br>
+    kanpae <ion-input
+    [(ngModel)]="respuesta5"
+    placeholder="hitza"
+    class="input-inline"
+    [ngClass]="{'input-error': errorRespuesta5}"
+    clearInput="true"
+  >
+  </ion-input> bi, <br>
+  emoizu limosnea <br>
+  Jangoikoagaitik. <br>
+
+
+    </p>
+  </div>
+
+  <div class="image-container">
+    <img
+      src="../../assets/images/InvertidaMari.png"
+      alt="Mari Argazkia"
+      class="image-peru"
+    />
+    <div class="info-box">
+      <p>Bete ezazu hutsuneak "hitza"-ren lekuan</p>
+      <div class="arrow"></div>
+    </div>
+  </div>
+
+  <!-- Resto del contenido, como la letra-grid, bottom-bar, etc. -->
+  <div class="bottom-bar">
+    <button class="next-button" (click)="verificarRespuestas()">
+      HURRENGOA
+    </button>
+  </div>
+</ion-content>

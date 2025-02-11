@@ -1,0 +1,136 @@
+// Fondo
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  
+    .background-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    // Iconos de las esquinas
+    .corner-icon {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+  
+      &-left {
+        top: env(safe-area-inset-top, 15px);
+        left: 10px;
+      }
+  
+      &-right {
+        top: env(safe-area-inset-top, 15px);
+        right: 10px;
+      }
+    }
+  
+    // Sección de los personajes
+    .character-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: absolute;
+      bottom: 15%;
+      width: 100%;
+      padding: 0 10px;
+  
+      .character {
+        width: 180px; // Tamaño ajustado para móviles
+        height: auto;
+      }
+  
+      .character-mari {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+  
+      .character-right {
+        align-self: flex-start;
+        margin-top: -350px; // Ajuste para evitar desbordes en móviles
+      }
+    }
+  
+    .dialog {
+      position: absolute;
+      top: -200%; 
+      left: 30%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 15px;
+      padding: 10px 15px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 13px;
+      color: #333;
+      width: 150px;
+      max-width: 100%;
+      word-wrap: break-word;
+  
+      .dialog-arrow {
+        position: absolute;
+        top: 100px;
+        left: 110%;
+        transform: translateX(-50%) rotate(90deg); 
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid white;
+      }    
+    }
+  
+    .next-button {
+      border: 2px solid white;
+      background-color: #FF6F00;
+      color: white;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 6px 12px;
+      width: 80%;
+      max-width: 200px;
+      height: 50px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      outline: none;
+      transition: 0.3s;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .corner-icon {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .character-section {
+      bottom: 12%;
+      .character {
+        width: 150px;
+      }
+      .character-right {
+        margin-top: -250px;
+      }
+    }
+  
+    .dialog {
+      width: 180px;
+      font-size: 12px;
+    }
+  
+    .next-button {
+      font-size: 16px;
+      height: 45px;
+    }
+  }
