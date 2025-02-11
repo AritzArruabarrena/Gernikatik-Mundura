@@ -23,14 +23,13 @@ interface Marker {
 })
 export class MapaPage implements AfterViewInit {
   map: any;
-  markers: Marker[] = [];  // Inicialmente vacío, se llenará con los datos de la API o del localStorage
+  markers: Marker[] = [];
   infoWindow: any;
 
-  // Inyectamos HttpClient y Location
   constructor(private location: Location, private http: HttpClient) {}
 
   goBack() {
-    this.location.back(); // Regresa a la página anterior
+    this.location.back();
   }
 
   ngAfterViewInit() {
@@ -51,7 +50,6 @@ export class MapaPage implements AfterViewInit {
       this.infoWindow = new google.maps.InfoWindow();
 
       google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        // Una vez cargado el mapa, se obtienen los marcadores desde la API (o del localStorage en caso de error)
         this.fetchMarkers();
         mapEle.classList.add('show-map');
       });
@@ -60,17 +58,12 @@ export class MapaPage implements AfterViewInit {
     }
   }
 
-  /**
-   * Método para obtener los marcadores desde la API.
-   * Si la respuesta es correcta se guarda en localStorage para usarla como respaldo.
-   */
   fetchMarkers() {
-    const url = 'http://192.168.73.128/api/places';
+    const url = 'https://192.168.73.128/api/places';
 
     this.http.get<any>(url).subscribe(
       response => {
         if (response && response.data) {
-          // Guardamos la respuesta en localStorage para usarla como respaldo
           localStorage.setItem('markersData', JSON.stringify(response));
           this.procesarMarkers(response);
         } else {
@@ -79,16 +72,12 @@ export class MapaPage implements AfterViewInit {
         }
       },
       error => {
-        console.error('Error al obtener los marcadores desde la API:', error);
+        console.error('Error al obtener los marcadores desde la API:', error.message);
         this.cargarMarkersDesdeLocalStorage();
       }
     );
   }
 
-  /**
-   * Procesa la respuesta de la API (o de localStorage) y transforma los datos en nuestro formato Marker.
-   * @param response Objeto con la propiedad "data" que contiene los marcadores.
-   */
   procesarMarkers(response: any) {
     this.markers = response.data.map((item: any) => ({
       position: {
@@ -100,9 +89,6 @@ export class MapaPage implements AfterViewInit {
     this.renderMarkers();
   }
 
-  /**
-   * Intenta cargar los marcadores desde localStorage en caso de error en la API.
-   */
   cargarMarkersDesdeLocalStorage() {
     const storedData = localStorage.getItem('markersData');
     if (storedData) {
@@ -130,7 +116,6 @@ export class MapaPage implements AfterViewInit {
       title: marker.title,
     });
 
-    // Mostrar el InfoWindow al hacer clic en el marcador
     googleMarker.addListener('click', () => {
       this.infoWindow.setContent(marker.title);
       this.infoWindow.open(this.map, googleMarker);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <base-config>
+    <trust-anchors>
+      <!-- Confía en los certificados del sistema -->
+      <certificates src="system" />
+      <!-- Confía en certificados instalados por el usuario (útil para auto-firmados en desarrollo) -->
+      <certificates src="user" />
+    </trust-anchors>
+  </base-config>
+</network-security-config>
