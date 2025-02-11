@@ -1,0 +1,32 @@
+<ion-content class="ion-padding" style="touch-action: none">
+  <img
+    src="../../assets/icon/arrow.png"
+    alt="Icono Izquierda"
+    class="corner-icon corner-icon-left"
+    (click)="goBack()"
+  />
+  <div class="game-container">
+    <img
+      src="../../assets/icon/Volume-up.png"
+      alt="Subir volumen"
+      class="corner-icon corner-icon-right"
+      (click)="playAudio()"
+    />
+    <div class="game-content">
+      <div
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        class="text-container"
+      >
+        <div *ngFor="let sentence of sentences" cdkDrag class="text-box">
+          <p>{{ sentence }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="next-button" (click)="checkOrder()">HURRENGOA</button>
+
+  <div *ngIf="showWinImage" class="win-image-overlay">
+    <img [src]="winImage" alt="Caminito Image" class="win-image" />
+  </div>
+</ion-content>

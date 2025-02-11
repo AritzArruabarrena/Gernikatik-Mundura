@@ -1,0 +1,120 @@
+ion-content {
+    --background: #a5d300;
+    display: flex;
+    align-items: center;
+    justify-content: center; // Centra el contenido horizontalmente
+    padding-top: 20px;
+    position: relative;
+    touch-action: none;
+  
+    // Variables de colores
+    $game-bg-color: white;
+    $button-bg: #ff6600;
+    $text-bg: rgb(172, 172, 172);
+  
+    .iframe-container {
+      background: $game-bg-color;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      max-width: 800px; // Limita el ancho en pantallas grandes
+      height: 600px; // Mantiene el tamaño adecuado del iframe
+    }
+  
+    iframe {
+      width: 90%;
+      height: 90%;
+      border: none;
+      border-radius: 10px;
+      padding-top: 60px; 
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .corner-icon {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+      cursor: pointer;
+  
+      &-left {
+        top: env(safe-area-inset-top, 15px);
+        left: 10px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .iframe-container {
+        padding: 15px;
+        max-width: 90%;
+        height: 500px;
+      }
+  
+      iframe {
+        padding-top: 50px;
+        width: 85%;
+        height: 85%;
+      }
+  
+    }
+  
+    @media (max-width: 480px) {
+      .iframe-container {
+        padding: 10px;
+        max-width: 95%;
+        height: 400px;
+      }
+  
+      iframe {
+        padding-top: 40px;
+        width: 80%;
+        height: 80%;
+      }
+    }
+    .next-button {
+        border: 2px solid white;
+        background-color: #ff6f00;
+        color: white;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 6px 12px;
+        width: 80%;
+        max-width: 200px;
+        height: 50px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        outline: none;
+        transition: 0.3s;
+        bottom: 5%; 
+      }  
+      .win-image-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000; 
+        z-index: 1000;
+      }
+      
+      .win-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+      }
+      
+}
+  
