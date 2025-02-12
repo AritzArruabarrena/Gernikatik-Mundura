@@ -109,7 +109,10 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ## Aplikazioaren ejekuzioa
 
-[![Ver Video en YouTube](https://img.youtube.com/vi/wRU-HliScRQ/0.jpg)](https://youtu.be/wRU-HliScRQ)
+
+https://github.com/user-attachments/assets/8fdf593e-cd68-4096-94c2-750791b9be8c
+
+
 
 ## 1. Sarrera
 
