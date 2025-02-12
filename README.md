@@ -107,5 +107,79 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ## Aplikazioaren erabiltzaile gida
 
+## Aplikazioaren ejekuzioa
+
+[![Ver Video en YouTube](https://img.youtube.com/vi/wRU-HliScRQ/0.jpg)](https://youtu.be/wRU-HliScRQ)
+
+## 1. Sarrera
+
+Gernikatik Mundura aplikazioak Gernika-Lumoko kultura, ondarea eta tradizioak ezagutzeko aukera ematen du, modu interaktiboan eta dibertigarrian. Mari eta Peru pertsonaiek lagunduta, helburu nagusia da lekuetara gerturatzean jarduerak desblokeatzea eta Gernikako historia hobeto ezagutzea.
+
+## 2. Hasierako Pantaila
+
+- **Mari eta Peru:** Hasieran, pertsonaia bi hauek agertuko dira aplikazioaren xedea labur azaltzeko.
+- **“Sartu” edo “Hasiera” Botoia:** Botoi honi sakatuz, aplikazioaren menu nagusira pasatuko zara.
+- **Gomendioa:** Irakurri pertsonaiek dioten mezua, Gernikako kultura ondarea nola ezagutu dezakezun argi izateko.
+
+## 3. Mapa eta Geolokalizazioa
+
+- **Mapa Ikonoa:** Aplikazioaren goiburuan edo menuan aurkituko duzu. Sakatu Mapa ikonoan Gernikako mapa interaktiboa irekitzeko.
+- **Geolokalizazioa:** Aplikazioak zure kokapena ezagutzen du (baimenak eman ondoren). Gernikako bost puntu nagusietara gerturatzen zarenean, puntu horri lotutako jarduerak aktibatzen dira.
+
+### Puntu Nagusiak
+
+- **Jai Alai Pilotalekua:** 2 jarduera desberdin
+- **Batzarretxea eta Arbola:** 1 jarduera
+- **Urriko Azken Astelehena:** 2 jarduera antzeko
+- **Marijesiak:** 2 jarduera antzeko
+- **Astra:** 1 jarduera
+
+**Nola funtzionatzen du?**  
+Leku horietara hurbiltzen zarenean, “Jolastu” sakatu jarduerari ekiteko.
+
+## 4. Jokoak eta Jarduerak
+
+Aplikazioak hainbat dinamika proposatzen ditu Gernikako kultur ondarea modu dibertigarrian ezagutzeko. Joko bakoitzaren aurretik, **Mari eta Peru** pertsonaiek azalpen laburra emango dizute.
+
+### Hizki-Sopa
+
+- Hizki-taula batean, bilatu behar dituzun hitzak zerrenda batean ikusiko dituzu.
+- Hitz bat topatzean, arrastatu lerro jarraitu bat hizkietatik.
+
+### Puzzleak
+
+- Irudi kultural bat zatikatuta agertzen da.
+- Arrastatu piezak dagokien tokira irudia osatzeko.
+
+### Bikoteak Bilatzea (Memoria-jokoa)
+
+- Kartatxoak itzalita agertzen dira.
+- Pare berdinak bilatu behar dituzu.
+
+### Ontziak Hondoratzeko
+
+- Karratu-sarean klik eginez, ezkutuko “ontziak” edo elementuak topatu, gure kasuan, astra fabrikaren armak.
+
+### Galderak
+
+- Batzuk testu bidezkoak dira, besteak audio bidez. Erantzuteko, aukeratu dagokion botoia.
+- **Kontuan izan:** Jarduerak puntu bakoitzean desberdinak dira. Ez dago zertan hurrenkera jakin bat jarraitu, baina puntu batera iristean, bertako jarduerak soilik irekiko zaizkizu.
+
+## 5. Audio Funtzioa
+
+- **Audio Ikonoa:** Egin klik soinu-ikonoan, testu edo azalpenaren bertsio entzungarria jasotzeko.
+- Oso lagungarria da irakurketa-zailtasunak dituztenentzat edo testua entzun nahi dutenentzat.
+
+## 6. Emaitzak eta Aurrerapena
+
+Jarduera bakoitza amaitzean, zure emaitzak agertuko dira (puntuazioa, asmatu dituzun hitzak, puzzle osatzeko denbora, etab.).  
+Puntu horietako jarduerak gaindituz, zure aurrerapena gordeta geldituko da.
+
+## 7. Aholku Orokorrak
+
+- **Atzera Ikonoa:** Aplikazioaren pantaila gehienetan topatuko duzu, pantaila aurreko fasera itzultzeko.
+- **Mari eta Peru:** Irakurri beti haien mezuak; jolasen funtzionamendua labur azaltzen dute.
+- **Geo-baimenak:** Ziurtatu aplikazioari geolokalizazio-baimena eman diozula, bestela ez dira jarduerak desbloqueatuko.
+- **Mapa:** Egin zoom in/zoom out hobeto kokatzeko eta informazio osagarria lortzeko.
 
 
