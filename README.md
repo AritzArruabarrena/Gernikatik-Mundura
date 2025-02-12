@@ -107,9 +107,6 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ## Aplikazioaren erabiltzaile gida
 
-## Aplikazioaren ejekuzioa
-
-
 https://github.com/user-attachments/assets/8fdf593e-cd68-4096-94c2-750791b9be8c
 
 
