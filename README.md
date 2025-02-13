@@ -101,9 +101,6 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ![Github gant](/AppArgazkiak/estilo%20gida.png)
 
-## Zerbitzaria
-
-## Rest API
 
 ## Aplikazioaren erabiltzaile gida
 
