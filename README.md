@@ -101,6 +101,273 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ![Github gant](/AppArgazkiak/estilo%20gida.png)
 
+```env
+# Configuración de la base de datos
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=api_gernika
+DB_USERNAME=root
+DB_PASSWORD=Admin123
+```
+
+## PLACES
+
+### Modelo y Migración
+Se crea el modelo `Place` y la migración correspondiente para definir la estructura de la tabla en la base de datos.
+
+### Seeder para Insertar Datos
+
+```php
+public function run()
+{
+    Place::create([
+        'name' => 'Jai Alai Pilotalekua',
+        'latitude' => 43.31748,
+        'longitude' => -2.67833,
+    ]);
+
+    Place::create([
+        'name' => 'Batzarretxe eta Arbola',
+        'latitude' => 43.31326,
+        'longitude' => -2.67922,
+    ]);
+
+    Place::create([
+        'name' => 'Marijesiak (Udaletxean)',
+        'latitude' => 43.31554,
+        'longitude' => -2.67881,
+    ]);
+
+    Place::create([
+        'name' => 'Urriko Azken Astelehena (Pasilekuan)',
+        'latitude' => 43.31393,
+        'longitude' => -2.67885,
+    ]);
+
+    Place::create([
+        'name' => 'Astra',
+        'latitude' => 43.31303,
+        'longitude' => -2.67537,
+    ]);
+}
+```
+
+### Controlador `PlaceController`
+
+```php
+class PlaceController extends Controller
+{
+    // Obtener todos los lugares
+    public function index()
+    {
+        $places = Place::all();
+        return PlaceResource::collection($places);
+    }
+
+    // Obtener un lugar específico
+    public function show($id)
+    {
+        $place = Place::findOrFail($id);
+        return new PlaceResource($place);
+    }
+
+    // Crear un nuevo lugar
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $place = Place::create($validatedData);
+        return new PlaceResource($place);
+    }
+
+    // Actualizar un lugar existente
+    public function update(Request $request, $id)
+    {
+        $place = Place::findOrFail($id);
+       
+        $validatedData = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'latitude' => 'sometimes|numeric',
+            'longitude' => 'sometimes|numeric',
+        ]);
+
+        $place->update($validatedData);
+        return new PlaceResource($place);
+    }
+
+    // Eliminar un lugar
+    public function destroy($id)
+    {
+        $place = Place::findOrFail($id);
+        $place->delete();
+        return response()->json(null, 204);
+    }
+}
+```
+
+### Formato de los Datos y Rutas
+
+```php
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class PlaceResource extends JsonResource
+{
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
+    }
+}
+```
+
+```php
+Route::get('places', 'App\Http\Controllers\Api\PlaceController@index');
+Route::get('/places/{id}', 'App\Http\Controllers\Api\PlaceController@show');
+Route::post('places', 'App\Http\Controllers\Api\PlaceController@store');
+Route::put('/places/{id}', 'App\Http\Controllers\Api\PlaceController@update');
+Route::delete('/places/{id}/', 'App\Http\Controllers\Api\PlaceController@destroy');
+```
+
+## SONG
+
+### Datos de la Canción
+
+```php
+private $songs = [
+    1 => [
+        'title' => 'Urte barri,barri',
+        'verses' => [
+            [
+                'number' => 1,
+                'lines' => [
+                    'Agur urte bat, barria dator',
+                    'kanta “urte barri barri”,',
+                    'joan jakuna gogoz eskertu',
+                    'ondo_etorri barriari;',
+                    'bake bidean emon pausua,',
+                    'Barri Ona iragarri,',
+                    'gure ustea ta konfiantza',
+                    'Jaunagan bakarrik jarri.'
+                ]
+            ],
+            [
+                'number' => 2,
+                'lines' => [
+                    'Barri Onaren irakurketan',
+                    'bost minutu egunero,',
+                    'alkarteagaz meza ospatzen',
+                    'joateko pozik gero.',
+                    'Uda sasoian umorez bete',
+                    'trikia eta pandero',
+                    'ermita eta santu guztiei',
+                    'errezatuz bero bero.'
+                ]
+            ],
+            [
+                'number' => 3,
+                'lines' => [
+                    'Pobrea eta apala dana',
+                    'inoiz ez dagigun saldu,',
+                    'elizan eta gero etxean',
+                    'fededun legez azaldu,',
+                    'esperantza ta maitetasuna',
+                    'indartu eta ez galdu:',
+                    'Jesus laguna ta barri ona',
+                    'sakondu eta zabaldu.'
+                ]
+            ]
+        ]
+    ]
+];
+```
+
+### Controlador `SongController`
+
+```php
+public function index()
+{
+    return response()->json($this->songs[1]);
+}
+
+public function showVerse($songId, $verseNumber)
+{
+    if (!isset($this->songs[$songId])) {
+        return response()->json(['message' => 'Song not found'], 404);
+    }
+
+    $song = $this->songs[$songId];
+
+    foreach ($song['verses'] as $verse) {
+        if ($verse['number'] == $verseNumber) {
+            return response()->json($verse);
+        }
+    }
+
+    return response()->json(['message' => 'Verse not found'], 404);
+}
+```
+
+### Definición de Rutas
+
+```php
+Route::get('/song', [SongController::class, 'index']);
+Route::get('/song/{id}/', [SongController::class, 'show']);
+Route::get('/song/{songId}/verse/{verseNumber}', [SongController::class, 'showVerse']);
+```
+
+## Rest API Kontsumitu
+
+Google Maps API erabiltzen da mapa interaktibo bat erakusteko Angular eta Ionic inguruneetan. Maparen gainean hainbat markatzaile erakusten dira, eta hauek API baten bidez eskuratzen dira. Interneteko konexiorik ez badago, `localStorage` erabiliko da azken datuak gordetzeko.
+
+### Erabilitako Teknologiak
+
+- **Angular** (Component eta `AfterViewInit` erabiliz)
+- **Ionic Framework** (UI osagaiak eta nabigazioa kudeatzeko)
+- **Google Maps API** (mapa eta markatzaileak bistaratzeko)
+- **HttpClient** (API-deiak egiteko)
+- **LocalStorage** (markatzaileen datuak gordetzeko)
+
+### Funtzionamendua
+
+1. **Mapa kargatzea**: `ngAfterViewInit` metodoak `loadMap()` deitzen du, honek Google Maps erakusten du hasierako kokapen batean.
+2. **Markatzaileak eskuratzea**: `fetchMarkers()` funtzioak API batetik datuak lortzen ditu. API-ak daturik ematen ez badu, `cargarMarkersDesdeLocalStorage()` metodoa erabiltzen da azken gordetako markatzaileak berreskuratzeko.
+3. **Markatzaileak prozesatzea eta bistaratzea**: `procesarMarkers()` metodoak API-aren erantzuna irakurri eta markatzaile gisa formateatzen du. `renderMarkers()` funtzioak mapa gainean gehitzen ditu.
+4. **Markatzaileekin interakzioa**: Markatzaile batean klik eginez gero, `infoWindow` bat irekiko da eta izenburua erakutsiko da.
+
+### Funtzio Nagusiak
+
+- `goBack()`: Aurreko orrira itzultzeko aukera ematen du.
+- `loadMap()`: Google Maps API erabiliz mapa kargatzen du.
+- `fetchMarkers()`: API-dei bat eginez markatzaileak eskuratzen ditu.
+- `procesarMarkers()`: API-tik jasotako datuak egituratzen eta gordetzen ditu.
+- `cargarMarkersDesdeLocalStorage()`: Konexiorik ez badago, aurrez gordetako datuak berreskuratzen ditu.
+- `renderMarkers()`: Markatzaileak bistaratzen ditu mapan.
+- `addMarker()`: Markatzaile bat mapan gehitzen du eta klik egitean informazioa erakusten du.
+
+### Erabilitako API-a
+
+Goian aipatu den bezala, gure Rest API-a erabiltzen dugu puntuak ezartzeko.
+
+**APIaren helbidea:** `https://192.168.73.128/api/places`
+
+### Ondorioa
+
+Kode honek Google Maps API erabiltzeko adibide praktiko bat erakusten du Angular eta Ionic inguruneetan. Mapa dinamikoa da, eta markatzaileak API-tik lortzen ditu, baina offline funtzionamendua ere badu `localStorage` bidez. Azkenik, erabiltzaileak markatzaileekin interakzioa egin dezake `infoWindow` erabiliz.
+
+
 # Irisgarritasuna
 
 Irisgarritasun proiektu honek bista txarra duten umeak kontuan hartuta web orrialde irisgarri bat sortzea du helburu. Helburu nagusia da erabiltzaile guztientzat, bereziki ikuskera murriztu duten haurrei, erraztasun handiena eskaintzea.
