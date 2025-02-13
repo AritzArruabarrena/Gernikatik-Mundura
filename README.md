@@ -101,6 +101,38 @@ Hemen uzten dizuen estilo gidaren argazkia
 
 ![Github gant](/AppArgazkiak/estilo%20gida.png)
 
+# Irisgarritasuna
+
+Irisgarritasun proiektu honek bista txarra duten umeak kontuan hartuta web orrialde irisgarri bat sortzea du helburu. Helburu nagusia da erabiltzaile guztientzat, bereziki ikuskera murriztu duten haurrei, erraztasun handiena eskaintzea.
+
+## Ezaugarriak
+
+### Botoi Erakargarriak
+- **Diseinu Handiak eta Argizkoak:**  
+  Botoi handiak eta erakargarriak sortu ditugu, erabiltzaileek erraz identifikatu eta sakatu ahal izateko. Diseinu hau haurren arreta erakartzeko eta erraz ikusteko egokituta dago.
+
+### Kolorearen Aukera
+- **Kolore Laranja:**  
+  Estetika eta energia transmititzeko, laranja kolorea erabili dugu. Kolore hau, psikologia kolorearen ikuspegitik, akatsak zuzeneko irakaspen batekin irudikatzen baita eta ilusioa eta positibismoa ekartzen du.
+
+### Irisgarritasun Araudiak
+- **WCAG:**  
+  Irisgarritasunari dagokionez, WCAG (Web Content Accessibility Guidelines) araudiak aztertu ditugu. Horrela, gure proiektua araudi horien arabera konforme dagoela ziurtatu nahi dugu, eta irisgarritasun premia nagusiak identifikatu ditugu.
+
+## Testeatzeko Prozesua
+
+### Irisgarritasun Tresnak
+- **WAVE eta Axe:**  
+  Web orrialdearen irisgarritasuna ebaluatzeko WAVE eta Axe bezalako tresnak erabili ditugu. Tresna hauek irtenbide iraunkorrak zehazteko laguntza ematen dute.
+
+### Nabigazioa
+- **Erabiltzaile Esperientzia:**  
+  Nabigazio erraz eta intuitiboa bermatzea finkatutako helburu nagusietako bat izan da. Hau da, bista txarra duten erabiltzaileek web orrialdea modu eraginkorrean eta errazean esploratu ahal izatea.
+
+---
+
+Erabiltzailearen beharrak lehenesten dituen web orrialde honek irisgarritasun araudia eta hobeto esperientzia baterako praktika onen jarraitzea du helburu.
+
 
 ## Aplikazioaren erabiltzaile gida
 
